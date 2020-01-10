@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { FormComponent, ListComponent } from './components';
+import * as COMPONENTS from './components';
 
 @NgModule({
-  declarations: [SharedModule.COMPONENTS],
+  declarations: [COMPONENTS.FormComponent, COMPONENTS.ListComponent],
   imports: [CommonModule, IonicModule],
-  exports: [CommonModule, IonicModule, SharedModule.COMPONENTS]
+  exports: [CommonModule, IonicModule, COMPONENTS.FormComponent, COMPONENTS.ListComponent]
 })
-export class SharedModule {
-  private static COMPONENTS = [FormComponent, ListComponent];
-}
+export class SharedModule {}

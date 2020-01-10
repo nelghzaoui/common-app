@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { AddPage, ListPage } from './pages';
 import { RouterModule, Routes } from '@angular/router';
+
+import * as PAGES from './pages';
 import { SharedModule } from '@shared/shared.module';
 
-const routes: Routes = [
-  { path: '', component: ListPage },
-  { path: 'add', component: AddPage }
+const ROUTES: Routes = [
+  { path: '', component: PAGES.ListPage },
+  { path: 'add', component: PAGES.AddPage }
 ];
 @NgModule({
-  declarations: [AddPage, ListPage],
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule]
+  declarations: [PAGES.AddPage, PAGES.ListPage],
+  imports: [CommonModule, RouterModule.forChild(ROUTES), SharedModule]
 })
 export class ServerModule {}

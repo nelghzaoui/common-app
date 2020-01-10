@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Item } from '@core/models/item.interface';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'form-component',

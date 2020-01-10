@@ -14,7 +14,7 @@ export class ListPage implements OnInit {
 
   constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const items: Server[] = [
       new Server('1', 'Angular'),
       new Server('2', 'Ionic'),
