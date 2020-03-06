@@ -1,5 +1,5 @@
-import { Api } from './api.class';
+import { ApiConfig } from './api-config.class';
 import { Environment } from './environments.class';
 import { SslPinning } from './sslpinning.enum';
 
-export { Api, Environment, SslPinning };
+export { ApiConfig, Environment, SslPinning };
