@@ -49,11 +49,15 @@ export class AlertUtils {
     this.show(message, button, callback);
   }
 
+  dismiss(): void {
+    this.alertCtrl.dismiss();
+  }
+
   private async show(message: string, buttons: AlertButton[], callback?: () => void): Promise<void> {
     const alert: HTMLIonAlertElement = await this.alertCtrl.create({
-      cssClass: 'alert',
       message: message,
-      buttons: buttons
+      buttons: buttons,
+      cssClass: 'alert'
     });
 
     if (callback != null) {
