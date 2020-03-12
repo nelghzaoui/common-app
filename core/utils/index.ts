@@ -1,5 +1,5 @@
-import { AlertUtils } from './alert.utils';
-import { LoadingUtils } from './loading.utils';
-import { ModalUtils } from './modal.utils';
+import { AlertUtils } from './components/alert.utils';
+import { LoadingUtils } from './components/loading.utils';
+import { ModalUtils } from './components/modal.utils';
 
 export { AlertUtils, LoadingUtils, ModalUtils };

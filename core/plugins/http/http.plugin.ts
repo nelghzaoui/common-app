@@ -5,7 +5,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { Observable, Observer } from 'rxjs';
 
 import { MessageType } from '@core/models/api/message-type.class';
-import { LoadingUtils } from '@core/utils/loading.utils';
+import { LoadingUtils } from '@core/utils/components/loading.utils';
 import { environment } from '@environments/environment';
 import { ErrorStatus } from './error-status.enum';
 import { Request } from './request.class';
