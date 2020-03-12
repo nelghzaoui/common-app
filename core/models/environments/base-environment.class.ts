@@ -2,10 +2,10 @@ import { Language } from './language.interface';
 
 export class BaseEnvironment {
   constructor(
-    protected dateFormat?: string,
-    protected errorCode?: string,
-    protected languages?: Language[],
-    protected version?: string
+    public dateFormat?: string,
+    public errorCode?: string,
+    public languages?: Language[],
+    public version?: string
   ) {
     this.dateFormat = 'YYYY-MM-DD HH:mm:ssZ';
     this.errorCode = '';
