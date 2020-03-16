@@ -72,7 +72,7 @@ export class HttpPlugin {
     return errors;
   }
 
-  /* Show logs */
+  // Show logs
   private log(message: string, logs: Request | any): void {
     if (environment.logLevel === 4) {
       console.groupCollapsed(`[${new Date()}] ${message} -------------`);

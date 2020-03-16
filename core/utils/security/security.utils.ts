@@ -18,11 +18,11 @@ export class SecurityUtils {
   }
 
   decryptProfile(profile: Profile): Profile {
-    return new Profile(this.decrypt(profile.deviceName), this.decrypt(profile.userId), this.decrypt(profile.userName));
+    return new Profile(this.decrypt(profile.device), this.decrypt(profile.id), this.decrypt(profile.name));
   }
 
   encryptProfile(profile: Profile): Profile {
-    return new Profile(this.encrypt(profile.deviceName), this.encrypt(profile.userId), this.encrypt(profile.userName));
+    return new Profile(this.encrypt(profile.device), this.encrypt(profile.id), this.encrypt(profile.name));
   }
 
   decryptProfiles(profiles: Profile[]): Profile[] {

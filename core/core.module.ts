@@ -1,12 +1,31 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NativeUtils } from './utils/native.utils';
-import * as UTILS from './utils';
+import {
+  ActionSheetUtils,
+  AlertUtils,
+  LoadingUtils,
+  ModalUtils,
+  NativeUtils,
+  PopoverUtils,
+  SecurityUtils,
+  ToastUtils
+} from './utils';
+
+const UTILS = [
+  ActionSheetUtils,
+  AlertUtils,
+  LoadingUtils,
+  ModalUtils,
+  PopoverUtils,
+  ToastUtils,
+  NativeUtils.getNative(),
+  SecurityUtils
+];
 
 @NgModule({
   declarations: [],
   imports: [CommonModule],
-  providers: [NativeUtils.getNative(), UTILS.AlertUtils, UTILS.LoadingUtils, UTILS.ModalUtils]
+  providers: [UTILS]
 })
 export class CoreModule {}
