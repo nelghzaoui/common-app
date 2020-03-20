@@ -13,13 +13,13 @@ import {
 } from './utils';
 
 const UTILS = [
+  NativeUtils.getNative(),
   ActionSheetUtils,
   AlertUtils,
   LoadingUtils,
   ModalUtils,
   PopoverUtils,
   ToastUtils,
-  NativeUtils.getNative(),
   SecurityUtils
 ];
 

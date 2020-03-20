@@ -1,26 +1,26 @@
 import { HTTP } from '@ionic-native/http/ngx';
 import { Network } from '@ionic-native/network';
 import { HTTPMock, NetworkMock } from '@core/mocks';
-import { Platform } from '@ionic/angular';
+import { Injectable, isDevMode } from '@angular/core';
+import { Device } from '@ionic-native/device/ngx';
+import { DeviceMock } from '@core/mocks/device.mock';
 
+@Injectable()
 export class NativeUtils {
-  // private static platform: Platform;
-
-  constructor(public platform: Platform) {
-    console.log(this.platform.platforms());
-  }
+  constructor() {}
 
   static getNative(): any[] {
-    let plugins: any[];
+    let plugins = null;
 
-    // if (this.platform.is('mobile')) {
-    //   plugins = [HTTP, Network];
-    // } else {
-    //   plugins = [
-    //     { provide: HTTP, useClass: HTTPMock },
-    //     { provide: Network, useClass: NetworkMock }
-    //   ];
-    // }
+    if (isDevMode()) {
+      plugins = [
+        { provide: Device, useClass: DeviceMock },
+        { provide: HTTP, useClass: HTTPMock },
+        { provide: Network, useClass: NetworkMock }
+      ];
+    } else {
+      plugins = [Device, HTTP, Network];
+    }
 
     return plugins;
   }

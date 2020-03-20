@@ -1,5 +1,5 @@
 import CryptoJS from 'crypto-js';
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Device } from '@ionic-native/device/ngx';
 import { Profile } from '@core/plugins/profile/profile.class';
 
@@ -7,7 +7,7 @@ Injectable();
 export class SecurityUtils {
   private static readonly PASSPHRASE_PAGEID = 'pageId';
 
-  constructor(private device: Device) {}
+  constructor(@Inject(forwardRef(() => Device)) private device: Device) {}
 
   decryptPageId(pageId: string): string {
     return this.decrypt(pageId, SecurityUtils.PASSPHRASE_PAGEID);
