@@ -5,6 +5,15 @@ import { ModalUtils } from './components/modal.utils';
 import { PopoverUtils } from './components/popover.utils';
 import { ToastUtils } from './components/toast.utils';
 import { NativeUtils } from './plugins/native.utils';
-import { SecurityUtils } from './security/security.utils';
+import { EncryptionUtils } from './security/encryption.utils';
 
-export { ActionSheetUtils, AlertUtils, LoadingUtils, ModalUtils, NativeUtils, PopoverUtils, SecurityUtils, ToastUtils };
+export {
+  ActionSheetUtils,
+  AlertUtils,
+  LoadingUtils,
+  ModalUtils,
+  PopoverUtils,
+  ToastUtils,
+  NativeUtils,
+  EncryptionUtils
+};
