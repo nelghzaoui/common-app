@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpPlugin } from '@core/plugins/http/http.plugin';
+import { HttpHelper } from '@core/helpers/http/http.helper';
+import { Profile, ProfileHelper } from '@core/helpers/profile';
 import { GetLegalResponse, INFO_API, InfoServiceFacade, ProfileRequest } from './info.api';
-import { Profile, ProfilePlugin } from '@core/plugins/profile';
 
 @Injectable()
 export class InfoService implements InfoServiceFacade {
-  constructor(private httpPlugin: HttpPlugin, private profilePlugin: ProfilePlugin) {}
+  constructor(private httpHelper: HttpHelper, private profileHelper: ProfileHelper) {}
 
   // Document
   getLegalNoticeDocument(): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.httpPlugin.request<GetLegalResponse>(INFO_API.LEGAL).subscribe(
+      this.httpHelper.request<GetLegalResponse>(INFO_API.LEGAL).subscribe(
         response => resolve(response.legalNoticeDocument),
         error => reject(error)
       );
@@ -25,9 +25,9 @@ export class InfoService implements InfoServiceFacade {
         profileName: profile.name
       };
 
-      this.httpPlugin.request(INFO_API.PROFILE_DELETE, request).subscribe(
+      this.httpHelper.request(INFO_API.PROFILE_DELETE, request).subscribe(
         () => {
-          this.profilePlugin.remove(profile.id);
+          this.profileHelper.remove(profile.id);
           resolve(true);
         },
         error => reject(error)
@@ -42,12 +42,12 @@ export class InfoService implements InfoServiceFacade {
         profileName: profile.name
       };
 
-      this.httpPlugin.request(INFO_API.PROFILE_UPDATE, request).subscribe(
+      this.httpHelper.request(INFO_API.PROFILE_UPDATE, request).subscribe(
         () => {
-          const currentProfile = this.profilePlugin.findById(profile.id);
+          const currentProfile = this.profileHelper.findById(profile.id);
           currentProfile.device = profile.device;
           currentProfile.name = profile.name;
-          this.profilePlugin.sync();
+          this.profileHelper.sync();
 
           resolve(true);
         },

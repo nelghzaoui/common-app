@@ -3,7 +3,7 @@ import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage
 import { Profile } from './profile.class';
 
 @Injectable()
-export class ProfilePlugin {
+export class ProfileHelper {
   profiles: Profile[] = [];
 
   constructor(private secureStorage: SecureStorage) {}

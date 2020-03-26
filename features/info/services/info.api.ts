@@ -1,4 +1,4 @@
-import { Profile } from '@core/plugins/profile/profile.class';
+import { Profile } from '@core/helpers/profile/profile.class';
 
 export const INFO_API = {
   LEGAL: 'document/getLegalNoticeDocument',

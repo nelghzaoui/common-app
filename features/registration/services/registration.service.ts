@@ -9,19 +9,19 @@ import {
 } from './registration.api';
 import { UserDevice } from '@core/models/dto/user-device.interface';
 import { ResponseApi } from '@core/models/api/response.interface';
-import { HttpPlugin } from '@core/plugins/http/http.plugin';
-import { Profile, ProfilePlugin } from '@core/plugins/profile';
+import { HttpHelper } from '@core/helpers/http/http.helper';
+import { Profile, ProfileHelper } from '@core/helpers/profile';
 
 @Injectable()
 export class RegistrationService implements RegistrationServiceFacade {
-  constructor(private httpPlugin: HttpPlugin, private profilePlugin: ProfilePlugin) {}
+  constructor(private httpHelper: HttpHelper, private profileHelper: ProfileHelper) {}
 
   activateProfile(request: ActivateProfile): Promise<Profile> {
     return new Promise((resolve, reject) => {
-      this.httpPlugin.request<ActivateProfileResponse>(REGISTRATION_API.PROFILE_ACTIVATE, request).subscribe(
+      this.httpHelper.request<ActivateProfileResponse>(REGISTRATION_API.PROFILE_ACTIVATE, request).subscribe(
         response => {
           const profile = new Profile(request.deviceName, request.userId, response.name);
-          this.profilePlugin.create(profile);
+          this.profileHelper.create(profile);
 
           resolve(profile);
         },
@@ -32,7 +32,7 @@ export class RegistrationService implements RegistrationServiceFacade {
 
   acceptTermsAndConditions(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.httpPlugin.request<ResponseApi>(REGISTRATION_API.TERMS).subscribe(
+      this.httpHelper.request<ResponseApi>(REGISTRATION_API.TERMS).subscribe(
         response => resolve(response.success),
         error => reject(error)
       );
@@ -41,7 +41,7 @@ export class RegistrationService implements RegistrationServiceFacade {
 
   initValidation(request: UserDevice, inputs: UserForm): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      this.httpPlugin.request<InitProfile>(REGISTRATION_API.PROFILE_INIT, request).subscribe(
+      this.httpHelper.request<InitProfile>(REGISTRATION_API.PROFILE_INIT, request).subscribe(
         async response => {
           const isValidated = await this.validateProfile(response.seedOperation, request.deviceId, inputs);
 
@@ -61,10 +61,10 @@ export class RegistrationService implements RegistrationServiceFacade {
         // totp,
         userId: inputs.profile.id
       };
-      this.httpPlugin.request(REGISTRATION_API.PROFILE_VALIDATE, request, false).subscribe(
+      this.httpHelper.request(REGISTRATION_API.PROFILE_VALIDATE, request, false).subscribe(
         () => {
           inputs.profile.seedDevice = inputs.seedDevice;
-          this.profilePlugin.sync();
+          this.profileHelper.sync();
           resolve(true);
         },
         e => reject(e)

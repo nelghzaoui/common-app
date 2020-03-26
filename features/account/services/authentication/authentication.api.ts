@@ -1,5 +1,5 @@
-import { Profile } from '@core/plugins/profile/profile.class';
-import { Subscription } from '../models/subscription.class';
+import { Profile } from '@core/helpers/profile/profile.class';
+import { Subscription } from '@account/models/subscription.class';
 import { UserDevice } from '@core/models/dto/user-device.interface';
 
 export const AUTHENTICATION_API = {
@@ -37,5 +37,5 @@ export interface ConnectionResponse {
 }
 
 export interface AuthenticationServiceFacade {
-  initConnection(request: UserDevice, form: UserForm): Promise<boolean>;
+  initLogin(request: UserDevice, form: UserForm): Promise<boolean>;
 }

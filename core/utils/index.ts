@@ -17,3 +17,14 @@ export {
   NativeUtils,
   EncryptionUtils
 };
+
+export const UTILS = [
+  ActionSheetUtils,
+  AlertUtils,
+  LoadingUtils,
+  ModalUtils,
+  PopoverUtils,
+  ToastUtils,
+  NativeUtils.getNative(),
+  EncryptionUtils
+];

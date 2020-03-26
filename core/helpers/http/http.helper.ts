@@ -11,7 +11,7 @@ import { ErrorStatus } from './error-status.enum';
 import { Request } from './request.class';
 
 @Injectable()
-export class HttpPlugin {
+export class HttpHelper {
   constructor(
     private loadingUtils: LoadingUtils,
     private http: HTTP,

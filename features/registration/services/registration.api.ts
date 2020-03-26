@@ -1,4 +1,4 @@
-import { Profile } from '@core/plugins/profile/profile.class';
+import { Profile } from '@core/helpers/profile/profile.class';
 import { UserDevice } from '@core/models/dto/user-device.interface';
 
 export const REGISTRATION_API = {

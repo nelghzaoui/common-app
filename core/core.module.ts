@@ -1,51 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {
-  ActionSheetUtils,
-  AlertUtils,
-  LoadingUtils,
-  ModalUtils,
-  PopoverUtils,
-  ToastUtils,
-  NativeUtils,
-  EncryptionUtils
-} from './utils';
+import { UTILS } from './utils';
 
 export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
+  const prefix = './assets/languages/';
+  const suffix = '.json';
+
   return new MultiTranslateHttpLoader(http, [
-    { prefix: './assets/languages/core/', suffix: 'json' },
-    { prefix: './assets/languages/account/', suffix: 'json' },
-    { prefix: './assets/languages/shared/', suffix: 'json' }
+    { prefix: prefix + 'core/', suffix: suffix },
+    { prefix: prefix + 'account/', suffix: suffix },
+    { prefix: prefix + 'server/', suffix: suffix },
+    { prefix: prefix + 'shared/', suffix: suffix }
   ]);
 }
 
-export const UTILS = [
-  ActionSheetUtils,
-  AlertUtils,
-  LoadingUtils,
-  ModalUtils,
-  PopoverUtils,
-  ToastUtils,
-  NativeUtils.getNative(),
-  EncryptionUtils
+export const MODULES = [
+  CommonModule,
+  HttpClientModule,
+  TranslateModule.forRoot({
+    defaultLanguage: 'en',
+    loader: {
+      provide: TranslateLoader,
+      useFactory: HttpLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
 ];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    TranslateModule.forRoot({
-      defaultLanguage: 'en',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
-  ],
+  imports: [MODULES],
   providers: [UTILS]
 })
 export class CoreModule {}
