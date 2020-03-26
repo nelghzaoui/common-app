@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import * as COMPONENTS from './components';
+import { TranslateModule } from '@ngx-translate/core';
+import { COMPONENTS } from './components';
+
+export const MODULES = [CommonModule, IonicModule, TranslateModule];
 
 @NgModule({
-  declarations: [COMPONENTS.FormComponent, COMPONENTS.ListComponent],
-  imports: [CommonModule, IonicModule],
-  exports: [CommonModule, IonicModule, COMPONENTS.FormComponent, COMPONENTS.ListComponent]
+  declarations: [COMPONENTS],
+  imports: [MODULES],
+  exports: [MODULES, COMPONENTS]
 })
 export class SharedModule {}

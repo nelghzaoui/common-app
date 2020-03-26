@@ -1,0 +1,24 @@
+<!-- <ion-toolbar class="disconnected" ion-text color="primary" *ngIf="!loginService.isConnected()">
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false" *ngIf="!isModal && !showArrow" color="light"></ion-menu-button>
+    <ion-icon
+      class="back-arrow"
+      *ngIf="isModal"
+      (click)="closeModal()"
+      color="light"
+      slot="start"
+      name="arrow-back"
+    ></ion-icon>
+    <ion-back-button text="" color="light" *ngIf="showArrow"></ion-back-button>
+  </ion-buttons>
+  <ion-title color="light" class="title-ios hydrated">
+    {{ title | translate }}
+  </ion-title>
+</ion-toolbar> -->
+
+<ion-toolbar>
+  <ion-buttons>
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  <ion-title>{{ title | translate }}</ion-title>
+</ion-toolbar>
