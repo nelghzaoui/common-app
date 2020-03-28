@@ -3,17 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { UTILS } from './utils';
+import { UTILS, NativeUtils } from './utils';
 
 export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
-  const prefix = './assets/languages/';
+  const prefix = './assets/languages';
   const suffix = '.json';
 
   return new MultiTranslateHttpLoader(http, [
-    { prefix: prefix + 'core/', suffix: suffix },
-    { prefix: prefix + 'account/', suffix: suffix },
-    { prefix: prefix + 'server/', suffix: suffix },
-    { prefix: prefix + 'shared/', suffix: suffix }
+    { prefix: `${prefix}/core/`, suffix: suffix },
+    { prefix: `${prefix}/account/`, suffix: suffix },
+    { prefix: `${prefix}/server/`, suffix: suffix },
+    { prefix: `${prefix}/shared/`, suffix: suffix },
   ]);
 }
 
@@ -25,13 +25,13 @@ export const MODULES = [
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }
-  })
+      deps: [HttpClient],
+    },
+  }),
 ];
 
 @NgModule({
   imports: [MODULES],
-  providers: [UTILS]
+  providers: [UTILS, NativeUtils.getMocks()],
 })
 export class CoreModule {}

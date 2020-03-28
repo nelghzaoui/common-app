@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+@Injectable()
 export class StatusBarMock extends StatusBar {
   get isVisible(): boolean {
     return true;

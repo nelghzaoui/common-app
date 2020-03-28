@@ -1,5 +1,7 @@
+import { Injectable } from '@angular/core';
 import { Device } from '@ionic-native/device/ngx';
 
+@Injectable()
 export class DeviceMock extends Device {
   get cordova(): string {
     return '9';

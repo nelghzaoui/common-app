@@ -2,7 +2,7 @@ import * as CryptoJS from 'crypto-js';
 import { Device } from '@ionic-native/device/ngx';
 import { Injectable, Inject, forwardRef } from '@angular/core';
 
-Injectable();
+@Injectable()
 export class EncryptionUtils {
   private static PASSPHRASE: string;
 

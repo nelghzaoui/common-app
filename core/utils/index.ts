@@ -15,7 +15,7 @@ export {
   PopoverUtils,
   ToastUtils,
   NativeUtils,
-  EncryptionUtils
+  EncryptionUtils,
 };
 
 export const UTILS = [
@@ -25,6 +25,5 @@ export const UTILS = [
   ModalUtils,
   PopoverUtils,
   ToastUtils,
-  NativeUtils.getNative(),
-  EncryptionUtils
+  EncryptionUtils,
 ];
