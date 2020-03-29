@@ -5,7 +5,7 @@ export const REGISTRATION_API = {
   PROFILE_ACTIVATE: 'register/activateProfile',
   PROFILE_INIT: 'register/initValidateProfile',
   PROFILE_VALIDATE: 'register/validateProfile',
-  TERMS: 'register/acceptTermsAndConditions'
+  TERMS: 'register/acceptTermsAndConditions',
 };
 
 export interface ActivateProfile {
