@@ -13,7 +13,7 @@ export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
     { prefix: `${prefix}/core/`, suffix: suffix },
     { prefix: `${prefix}/account/`, suffix: suffix },
     { prefix: `${prefix}/server/`, suffix: suffix },
-    { prefix: `${prefix}/shared/`, suffix: suffix },
+    { prefix: `${prefix}/shared/`, suffix: suffix }
   ]);
 }
 
@@ -25,13 +25,13 @@ export const MODULES = [
     loader: {
       provide: TranslateLoader,
       useFactory: HttpLoaderFactory,
-      deps: [HttpClient],
-    },
-  }),
+      deps: [HttpClient]
+    }
+  })
 ];
 
 @NgModule({
   imports: [MODULES],
-  providers: [UTILS, NativeUtils.getMocks()],
+  providers: [UTILS, NativeUtils.getMocks()]
 })
 export class CoreModule {}

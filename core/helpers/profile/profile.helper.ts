@@ -22,7 +22,7 @@ export class ProfileHelper {
   }
 
   remove(id: string): void {
-    const index = this.profiles.findIndex(p => p.id === id);
+    const index = this.profiles.findIndex((p: Profile) => p.id === id);
     if (index >= 0) {
       this.profiles.splice(index, 1);
       this.sync();
@@ -30,7 +30,7 @@ export class ProfileHelper {
   }
 
   load(): Promise<Profile[]> {
-    return new Promise(async resolve => {
+    return new Promise(async (resolve) => {
       const storage = await this.storage();
 
       const ids = await storage.keys();
@@ -59,7 +59,7 @@ export class ProfileHelper {
   }
 
   findById(id: string): Profile {
-    return this.profiles.find(profile => profile.id === id);
+    return this.profiles.find((profile: Profile) => profile.id === id);
   }
 
   protected exist(id: string): boolean {
@@ -87,7 +87,7 @@ export class ProfileHelper {
     }
     let last: Date = null;
     let lastProfile: Profile = null;
-    this.profiles.forEach(profile => {
+    this.profiles.forEach((profile) => {
       if (!last) {
         last = profile.lastConnection;
         lastProfile = profile;
@@ -107,7 +107,7 @@ export class ProfileHelper {
       return;
     }
 
-    this.profiles.forEach(p => {
+    this.profiles.forEach((p: Profile) => {
       if (p.id === id) {
         p.lastConnection = new Date();
       }

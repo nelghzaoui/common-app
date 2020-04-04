@@ -38,14 +38,14 @@ export class HttpHelper {
     return Observable.create((observer: Observer<T>) => {
       this.http
         .post(request.url, request.parameters, request.headers)
-        .then(httpResponse => {
+        .then((httpResponse: HTTPResponse) => {
           const response = JSON.parse(httpResponse.data);
           this.zone.run(() => {
             observer.next(response);
             observer.complete();
           });
         })
-        .catch(e => observer.error(this.handleError(e)))
+        .catch((e: HTTPResponse) => observer.error(this.handleError(e)))
         .finally(() => this.loadingUtils.dismiss());
     });
   }

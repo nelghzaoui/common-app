@@ -1,5 +1,5 @@
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -22,13 +22,13 @@ export class HTTPMock extends HTTP {
       this.http
         .post(url, null, { headers: headers, params: params, responseType: 'text', withCredentials: true })
         .subscribe(
-          data => {
+          (data) => {
             response.url = url;
             response.data = data;
 
             resolve(response);
           },
-          error => {
+          (error: HttpErrorResponse) => {
             response.status = error.status;
             response.url = error.url;
             response.data = error.message;

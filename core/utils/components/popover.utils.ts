@@ -18,7 +18,7 @@ export class PopoverUtils {
   }
 
   dismiss(): void {
-    this.popoverCtrl.getTop().then(element => {
+    this.popoverCtrl.getTop().then((element: HTMLIonPopoverElement) => {
       if (element) this.popoverCtrl.dismiss();
     });
   }

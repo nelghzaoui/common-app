@@ -8,9 +8,8 @@ describe('MarkupBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MarkupBarComponent ]
-    })
-    .compileComponents();
+      declarations: [MarkupBarComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

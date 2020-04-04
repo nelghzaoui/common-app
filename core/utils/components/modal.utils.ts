@@ -16,7 +16,7 @@ export class ModalUtils {
   }
 
   dismiss(): void {
-    this.modalCtrl.getTop().then(element => {
+    this.modalCtrl.getTop().then((element: HTMLIonModalElement) => {
       if (element) this.modalCtrl.dismiss();
     });
   }

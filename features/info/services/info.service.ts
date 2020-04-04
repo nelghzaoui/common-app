@@ -11,8 +11,8 @@ export class InfoService implements InfoServiceFacade {
   getLegalNoticeDocument(): Promise<string> {
     return new Promise((resolve, reject) => {
       this.httpHelper.request<GetLegalResponse>(INFO_API.LEGAL).subscribe(
-        response => resolve(response.legalNoticeDocument),
-        error => reject(error)
+        (response) => resolve(response.legalNoticeDocument),
+        (error) => reject(error)
       );
     });
   }
@@ -30,7 +30,7 @@ export class InfoService implements InfoServiceFacade {
           this.profileHelper.remove(profile.id);
           resolve(true);
         },
-        error => reject(error)
+        (error) => reject(error)
       );
     });
   }
@@ -51,7 +51,7 @@ export class InfoService implements InfoServiceFacade {
 
           resolve(true);
         },
-        error => reject(error)
+        (error) => reject(error)
       );
     });
   }

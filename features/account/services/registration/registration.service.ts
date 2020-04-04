@@ -19,13 +19,13 @@ export class RegistrationService implements RegistrationServiceFacade {
   activateProfile(request: ActivateProfile): Promise<Profile> {
     return new Promise((resolve, reject) => {
       this.httpHelper.request<ActivateProfileResponse>(REGISTRATION_API.PROFILE_ACTIVATE, request).subscribe(
-        response => {
+        (response) => {
           const profile = new Profile(request.deviceName, request.userId, response.name);
           this.profileHelper.create(profile);
 
           resolve(profile);
         },
-        error => reject(error)
+        (error) => reject(error)
       );
     });
   }
@@ -33,8 +33,8 @@ export class RegistrationService implements RegistrationServiceFacade {
   acceptTermsAndConditions(): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.httpHelper.request<ResponseApi>(REGISTRATION_API.TERMS).subscribe(
-        response => resolve(response.success),
-        error => reject(error)
+        (response) => resolve(response.success),
+        (error) => reject(error)
       );
     });
   }
@@ -42,12 +42,12 @@ export class RegistrationService implements RegistrationServiceFacade {
   initValidation(request: UserDevice, inputs: UserForm): Promise<boolean> {
     return new Promise((resolve, reject) => {
       this.httpHelper.request<InitProfile>(REGISTRATION_API.PROFILE_INIT, request).subscribe(
-        async response => {
+        async (response) => {
           const isValidated = await this.validateProfile(response.seedOperation, request.deviceId, inputs);
 
           resolve(isValidated);
         },
-        error => reject(error)
+        (error) => reject(error)
       );
     });
   }
@@ -67,7 +67,7 @@ export class RegistrationService implements RegistrationServiceFacade {
           this.profileHelper.sync();
           resolve(true);
         },
-        e => reject(e)
+        (e) => reject(e)
       );
     });
   }

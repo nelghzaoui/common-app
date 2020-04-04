@@ -19,7 +19,7 @@ export class NativeUtils {
         { provide: HTTP, useClass: MOCKS.HTTPMock },
         { provide: Network, useClass: MOCKS.NetworkMock },
         { provide: SplashScreen, useClass: MOCKS.SplashScreenMock },
-        { provide: StatusBar, useClass: MOCKS.StatusBarMock },
+        { provide: StatusBar, useClass: MOCKS.StatusBarMock }
       ];
     } else {
       plugins = [Device, HTTP, Network, SplashScreen, StatusBar];
