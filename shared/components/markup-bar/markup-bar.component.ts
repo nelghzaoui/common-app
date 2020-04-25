@@ -10,7 +10,5 @@ export class MarkupBarComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.title = 'test';
-  }
+  ngOnInit(): void {}
 }

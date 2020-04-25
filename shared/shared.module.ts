@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { COMPONENTS } from './components';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-export const MODULES = [CommonModule, IonicModule, TranslateModule];
+export const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, TranslateModule];
 
 @NgModule({
   declarations: [COMPONENTS],

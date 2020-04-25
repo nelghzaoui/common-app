@@ -1,98 +1,24 @@
-<ion-header>
-  <markup-bar isModal="true" showArrow="true" [pageTitle]="'newProfile.pageTitle' | translate"></markup-bar>
-</ion-header>
+<ion-content>
+  <ion-text color="primary" class="ion-text-center">
+    <h2>{{ 'register.title' | translate }}</h2>
+  </ion-text>
 
-<!-- <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <h2 class="ion-padding">{{ 'newProfile.registerWith' | translate }}</h2>
-        <ion-segment class="ion-padding" [(ngModel)]="loginType" name="loginType">
-          <ion-segment-button value="CARD" (ionSelect)="selectCard()" disabled="true">
-            {{ 'newProfile.cardId' | translate }}
-          </ion-segment-button>
-          <ion-segment-button value="LOGIN_ID" (ionSelect)="selectLoginId()" checked="true">
-            {{ 'newProfile.userId' | translate }}
-          </ion-segment-button>
-        </ion-segment>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <form novalidate [formGroup]="form" (ngSubmit)="submit()">
-          <ion-list>
-            <ion-item tabindex="1">
-              <input-mask-v2
-                [inputValue]="this.inputMaskCard"
-                tabindex="100"
-                *ngIf="loginType == 'CARD'"
-                item-content
-                formControlName="card"
-                numberOnly="true"
-                mask="6703 ____ ____ ____ _"
-                allowedChars="0-9"
-                class="ion-padding-horizontal"
-              ></input-mask-v2>
-              <input-mask-v2
-                [inputValue]="this.inputMaskLoginId"
-                tabindex="100"
-                *ngIf="loginType == 'LOGIN_ID'"
-                item-content
-                formControlName="login"
-                mask="__________"
-                allowedChars="0-9A-Z"
-                class="ion-padding-horizontal ion-text-capitalize"
-              ></input-mask-v2>
-            </ion-item>
+  <form class="ion-padding">
+    <ion-item>
+      <ion-label color="primary" position="stacked">Username</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
 
-            <h4 class="ion-padding">{{ 'newProfile.choseDeviceName' | translate }}</h4>
-            <ion-item>
-              <ion-input
-                class="ion-text-center"
-                tabindex="2"
-                type="text"
-                formControlName="deviceName"
-                (keypress)="eventHandler($event.keyCode)"
-              ></ion-input>
-            </ion-item>
-            <div formGroupName="profileCode">
-              <h4 class="ion-padding">{{ 'newProfile.chosePin' | translate }}</h4>
-              <ion-item>
-                <ion-label position="fixed" class="ion-margin-start">{{ 'newProfile.pin' | translate }}</ion-label>
-                <ion-input
-                  tabindex="3"
-                  type="password"
-                  maxlength="6"
-                  placeholder="******"
-                  (input)="inputPinCodeChange()"
-                  #inputCode
-                  formControlName="code"
-                ></ion-input>
-              </ion-item>
-              <ion-item>
-                <ion-label position="fixed" class="ion-margin-start"
-                  >{{ 'newProfile.repeatPin' | translate }}</ion-label
-                >
-                <ion-input
-                  tabindex="4"
-                  type="password"
-                  maxlength="6"
-                  placeholder="******"
-                  (input)="inputPinCodeChange()"
-                  #inputCodeRepeat
-                  formControlName="repeat"
-                ></ion-input>
-              </ion-item>
-            </div>
-          </ion-list>
-          <ion-toolbar>
-            <ion-button expand="block" color="primary" tabindex="5" type="submit">
-              <ion-icon slot="end" name="arrow-forward"></ion-icon>
-              <ion-label>{{ 'newProfile.next' | translate }}</ion-label>
-            </ion-button>
-          </ion-toolbar>
-        </form>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-content> -->
+    <ion-item>
+      <ion-label color="primary" position="stacked">Mail</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" position="stacked">Pasword</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+
+    <ion-button class="ion-padding" expand="block">Submit</ion-button>
+  </form>
+</ion-content>
