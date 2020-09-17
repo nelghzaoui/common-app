@@ -1,6 +1,7 @@
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SslPinning } from '@core/models/environments';
 
 @Injectable()
 export class HTTPMock extends HTTP {
@@ -8,34 +9,34 @@ export class HTTPMock extends HTTP {
     super();
   }
 
-  post(url: string, body: any, headers: HttpHeaders): Promise<HTTPResponse> {
-    const params = new HttpParams({ fromObject: body });
+  public setServerTrustMode(sslPinning: SslPinning): Promise<void> {
+    return null;
+  }
 
+  public post(url: string, body: HttpParams, headers: HttpHeaders): Promise<HTTPResponse> {
     return new Promise<HTTPResponse>((resolve, reject) => {
-      const response: HTTPResponse = {
+      const httpResponse: HTTPResponse = {
         status: null,
         headers: null,
         url: null,
         data: null
       };
 
-      this.http
-        .post(url, null, { headers: headers, params: params, responseType: 'text', withCredentials: true })
-        .subscribe(
-          (data) => {
-            response.url = url;
-            response.data = data;
+      this.http.post(url, body, { headers: headers, responseType: 'text', withCredentials: false }).subscribe(
+        (response) => {
+          httpResponse.url = url;
+          httpResponse.data = response;
 
-            resolve(response);
-          },
-          (error: HttpErrorResponse) => {
-            response.status = error.status;
-            response.url = error.url;
-            response.data = error.message;
+          resolve(httpResponse);
+        },
+        (error: HttpErrorResponse) => {
+          httpResponse.status = error.status;
+          httpResponse.url = error.url;
+          httpResponse.data = error.message;
 
-            reject(response);
-          }
-        );
+          reject(httpResponse);
+        }
+      );
     });
   }
 }

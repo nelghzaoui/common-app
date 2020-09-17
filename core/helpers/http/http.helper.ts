@@ -2,7 +2,7 @@ import { Injectable, NgZone } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { Network } from '@ionic-native/network/ngx';
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { MessageType } from '@core/models/api/message-type.class';
 import { LoadingUtils } from '@core/utils/components/loading.utils';
@@ -22,20 +22,13 @@ export class HttpHelper {
     this.http.setServerTrustMode(environment.server.sslPinning);
   }
 
-  request<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
-    const request = new Request(service, parameters, {}, showLoading);
+  public post<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
+    return new Observable((observer) => {
+      if (showLoading) {
+        this.loadingUtils.present();
+      }
 
-    if (showLoading) {
-      this.loadingUtils.present().then(() => {
-        return this.post(request);
-      });
-    } else {
-      return this.post(request);
-    }
-  }
-
-  private post<T>(request: Request): Observable<T> {
-    return Observable.create((observer: Observer<T>) => {
+      const request = new Request(service, parameters, {}, showLoading);
       this.http
         .post(request.url, request.parameters, request.headers)
         .then((httpResponse: HTTPResponse) => {

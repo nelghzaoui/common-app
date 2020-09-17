@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 
 import { RegistrationPage } from '@account/pages';
+import { RegistrationService } from './services/registration/registration.service';
 
 export const ROUTES: Routes = [
   {
@@ -13,6 +14,7 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [RegistrationPage],
-  imports: [SharedModule, RouterModule.forChild(ROUTES)]
+  imports: [SharedModule, RouterModule.forChild(ROUTES)],
+  providers: [RegistrationService]
 })
 export class AccountModule {}
