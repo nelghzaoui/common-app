@@ -5,7 +5,7 @@ import { ToastController } from '@ionic/angular';
 export class ToastUtils {
   constructor(private toastCtrl: ToastController) {}
 
-  async present(message: string): Promise<void> {
+  public async present(message: string): Promise<void> {
     const toast: HTMLIonToastElement = await this.toastCtrl.create({
       message: message,
       duration: 1000,

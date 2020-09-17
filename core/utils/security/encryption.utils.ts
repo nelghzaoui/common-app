@@ -10,7 +10,7 @@ export class EncryptionUtils {
     EncryptionUtils.PASSPHRASE = this.device.uuid;
   }
 
-  decrypt(value: string): string {
+  public decrypt(value: string): string {
     if (value || value.length !== 0) {
       let decryptedValue = CryptoJS.AES.decrypt(value, EncryptionUtils.PASSPHRASE);
 
@@ -24,7 +24,7 @@ export class EncryptionUtils {
     }
   }
 
-  encrypt(value: string): string {
+  public encrypt(value: string): string {
     if (value || value.length !== 0) {
       return CryptoJS.AES.encrypt(value, EncryptionUtils.PASSPHRASE).toString();
     }

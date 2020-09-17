@@ -6,7 +6,7 @@ import { ComponentRef } from '@ionic/core';
 export class PopoverUtils {
   constructor(private popoverCtrl: PopoverController) {}
 
-  async present(component: ComponentRef, event: Event): Promise<void> {
+  public async present(component: ComponentRef, event: Event): Promise<void> {
     const popover: HTMLIonPopoverElement = await this.popoverCtrl.create({
       component: component,
       event: event,
@@ -17,7 +17,7 @@ export class PopoverUtils {
     return await popover.present();
   }
 
-  dismiss(): void {
+  public dismiss(): void {
     this.popoverCtrl.getTop().then((element: HTMLIonPopoverElement) => {
       if (element) this.popoverCtrl.dismiss();
     });

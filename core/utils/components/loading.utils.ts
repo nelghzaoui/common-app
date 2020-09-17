@@ -5,7 +5,7 @@ import { LoadingController } from '@ionic/angular';
 export class LoadingUtils {
   constructor(public loadingCtrl: LoadingController) {}
 
-  async present(message = ''): Promise<void> {
+  public async present(message = ''): Promise<void> {
     const loading: HTMLIonLoadingElement = await this.loadingCtrl.create({
       message: message,
       showBackdrop: true
@@ -14,7 +14,7 @@ export class LoadingUtils {
     await loading.present();
   }
 
-  dismiss(): void {
+  public dismiss(): void {
     this.loadingCtrl.dismiss();
   }
 }

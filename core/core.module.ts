@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { UTILS, NativeUtils } from './utils';
+import { HELPERS } from './helpers';
+import { UTILS } from './utils';
 
 export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
   const prefix = './assets/languages';
@@ -32,6 +33,6 @@ export const MODULES = [
 
 @NgModule({
   imports: [MODULES],
-  providers: [UTILS, NativeUtils.getMocks()]
+  providers: [HELPERS, UTILS]
 })
 export class CoreModule {}
