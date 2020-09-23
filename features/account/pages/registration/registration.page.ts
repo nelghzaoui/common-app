@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { RegistrationService } from '@account/services/registration/registration.service';
 import { Account } from '@account/models/account.class';
 
@@ -11,7 +13,12 @@ import { Account } from '@account/models/account.class';
 export class RegistrationPage implements OnInit {
   form: FormGroup;
 
-  constructor(private builder: FormBuilder, private registrationService: RegistrationService) {}
+  constructor(
+    private builder: FormBuilder,
+    private navCtrl: NavController,
+    private registrationService: RegistrationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.form = this.builder.group({
@@ -23,6 +30,8 @@ export class RegistrationPage implements OnInit {
   }
 
   onRegister(): void {
-    this.registrationService.register(this.form.value as Account).then(() => console.log('success'));
+    this.registrationService.register(this.form.value as Account).then(() => {
+      this.navCtrl.navigateForward(['./auth'], { relativeTo: this.route });
+    });
   }
 }
