@@ -1,42 +1,50 @@
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
-import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SslPinning } from '@core/models/environments';
 
 @Injectable()
 export class HTTPMock extends HTTP {
+  httpResponse: HTTPResponse;
+
   constructor(private http: HttpClient) {
     super();
+    this.httpResponse = {
+      status: null,
+      headers: null,
+      url: null,
+      data: null
+    };
   }
 
   public setServerTrustMode(sslPinning: SslPinning): Promise<void> {
     return null;
   }
 
-  public post(url: string, body: HttpParams, headers: HttpHeaders): Promise<HTTPResponse> {
+  public sendRequest(url: string, { method, data, headers }): Promise<HTTPResponse> {
     return new Promise<HTTPResponse>((resolve, reject) => {
-      const httpResponse: HTTPResponse = {
-        status: null,
-        headers: null,
-        url: null,
-        data: null
-      };
+      this.http
+        .request((method as string).toUpperCase(), url, {
+          body: data,
+          headers: headers,
+          responseType: 'text',
+          withCredentials: false
+        })
+        .subscribe(
+          (response) => {
+            this.httpResponse.url = url;
+            this.httpResponse.data = response;
 
-      this.http.post(url, body, { headers: headers, responseType: 'text', withCredentials: false }).subscribe(
-        (response) => {
-          httpResponse.url = url;
-          httpResponse.data = response;
+            resolve(this.httpResponse);
+          },
+          (error: HttpErrorResponse) => {
+            this.httpResponse.status = error.status;
+            this.httpResponse.url = error.url;
+            this.httpResponse.data = error.message;
 
-          resolve(httpResponse);
-        },
-        (error: HttpErrorResponse) => {
-          httpResponse.status = error.status;
-          httpResponse.url = error.url;
-          httpResponse.data = error.message;
-
-          reject(httpResponse);
-        }
-      );
+            reject(this.httpResponse);
+          }
+        );
     });
   }
 }

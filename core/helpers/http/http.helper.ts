@@ -1,13 +1,14 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { Network } from '@ionic-native/network/ngx';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { MessageType } from '@core/models/api/message-type.class';
 import { LoadingUtils } from '@core/utils/components/loading.utils';
 import { environment } from '@environments/environment';
 import { ErrorStatus } from './error-status.enum';
+import { HTTPMethod } from './http-method.enum';
 import { Request } from './request.class';
 
 @Injectable()
@@ -16,30 +17,44 @@ export class HttpHelper {
     private loadingUtils: LoadingUtils,
     private http: HTTP,
     private network: Network,
-    private platform: Platform,
-    private zone: NgZone
+    private platform: Platform
   ) {
     this.http.setServerTrustMode(environment.server.sslPinning);
   }
 
-  public post<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
-    return new Observable((observer) => {
-      if (showLoading) {
-        this.loadingUtils.present();
-      }
+  public get<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
+    return from(this.request<T>(HTTPMethod.GET, service, parameters, showLoading));
+  }
+
+  public post<T>(service: string, parameters = {}, showLoading = true): Promise<T> {
+    return this.request(HTTPMethod.POST, service, parameters, showLoading);
+  }
+
+  public update<T>(service: string, parameters = {}, showLoading = true): Promise<T> {
+    return this.request(HTTPMethod.PATCH, service, parameters, showLoading);
+  }
+
+  public delete<T>(service: string, parameters = {}, showLoading = true): Promise<T> {
+    return this.request(HTTPMethod.DELETE, service, parameters, showLoading);
+  }
+
+  private request<T>(method: HTTPMethod, service: string, parameters = {}, showLoading: boolean): Promise<T> {
+    return new Promise((resolve, reject) => {
+      if (showLoading) this.loadingUtils.present();
 
       const request = new Request(service, parameters, {}, showLoading);
+
       this.http
-        .post(request.url, request.parameters, request.headers)
+        .sendRequest(request.url, { method: method, data: request.parameters, headers: {} })
         .then((httpResponse: HTTPResponse) => {
           const response = JSON.parse(httpResponse.data);
-          this.zone.run(() => {
-            observer.next(response);
-            observer.complete();
-          });
+          this.log('REQUEST', response);
+          resolve(response);
         })
-        .catch((e: HTTPResponse) => observer.error(this.handleError(e)))
-        .finally(() => this.loadingUtils.dismiss());
+        .catch((e: HTTPResponse) => reject(this.handleError(e)))
+        .finally(() => {
+          if (showLoading) this.loadingUtils.dismiss();
+        });
     });
   }
 
