@@ -1,0 +1,16 @@
+import { environment } from '@environments/environment';
+
+export class Request {
+  constructor(
+    public url: string,
+    public parameters: {
+      [param: string]: string | string[];
+    },
+    public headers: {
+      [name: string]: string | string[];
+    },
+    public showLoading: boolean
+  ) {
+    this.url = environment.server.url + url;
+  }
+}

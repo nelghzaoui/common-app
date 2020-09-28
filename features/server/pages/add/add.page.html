@@ -1,0 +1,24 @@
+<ion-content>
+  <ion-text color="primary" class="ion-text-center">
+    <h2>{{ 'server.add.title' | translate }}</h2>
+  </ion-text>
+
+  <form [formGroup]="form" (ngSubmit)="onAdd()">
+    <ion-item>
+      <ion-label position="stacked">{{ 'server.add.name' | translate }}</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{ 'server.add.url' | translate }}</ion-label>
+      <ion-input formControlName="url"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">{{ 'server.add.port' | translate }}</ion-label>
+      <ion-input formControlName="port"></ion-input>
+    </ion-item>
+
+    <ion-button type="submit" class="ion-padding" expand="block">{{ 'server.add.btn' | translate }}</ion-button>
+  </form>
+</ion-content>
