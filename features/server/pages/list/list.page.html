@@ -1,11 +1,14 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title> Choose your server </ion-title>
+    <ion-title>{{ 'server.list.title' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <list-component [items]="items" (redirect)="onRedirect($event)"></list-component>
+  <ng-container>
+    <list-component [items]="server$ | async" (redirect)="onRedirect($event)"></list-component>
+  </ng-container>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="primary" (click)="onAdd()">
       <ion-icon name="add"></ion-icon>

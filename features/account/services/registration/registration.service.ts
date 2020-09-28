@@ -22,16 +22,18 @@ export class RegistrationService implements RegistrationServiceFacade {
   ) {}
 
   register(account: Account): Promise<AccountResponse> {
-    return new Promise((resolve, reject) => {
-      const request: AccountRequest = {
-        account: account
-      };
+    const request: AccountRequest = {
+      account: account
+    };
 
-      this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request).subscribe(
-        (response) => resolve(response),
-        (error) => reject(error)
-      );
-    });
+    return this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request);
+
+    // return new Promise((resolve, reject) => {
+    //   this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request).subscribe(
+    //     (response) => resolve(response),
+    //     (error) => reject(error)
+    //   );
+    // });
   }
 
   // activateProfile(request: ActivateProfile): Promise<Profile> {

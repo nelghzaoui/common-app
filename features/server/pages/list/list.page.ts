@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Item } from '@core/models/item.interface';
 import { Server } from '@server/models/server.class';
+import { ServerService } from '@server/services/server.service';
 
 @Component({
   selector: 'server-list',
@@ -10,26 +12,21 @@ import { Server } from '@server/models/server.class';
   styleUrls: ['./list.page.scss']
 })
 export class ListPage implements OnInit {
-  items: Server[] = [];
+  server$: Observable<Server[]>;
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private serverService: ServerService) {
+    this.server$ = this.serverService.getAll();
+  }
 
   ngOnInit(): void {
-    const items: Server[] = [
-      new Server('1', 'Angular'),
-      new Server('2', 'Ionic'),
-      new Server('3', 'React'),
-      new Server('4', 'Vue')
-    ];
+    console.log(this.server$);
 
-    for (const item of items) {
-      this.items.push(item);
-    }
+    // this.server$ = this.serverService.getAll();
+    console.log(this.server$);
   }
 
   onAdd(): void {
-    this.navCtrl.navigateForward('server/add');
-    console.log('redirect to add-form page');
+    this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
   }
 
   onRedirect(item: Item): void {
