@@ -14,15 +14,10 @@ import { ServerService } from '@server/services/server.service';
 export class ListPage implements OnInit {
   server$: Observable<Server[]>;
 
-  constructor(private navCtrl: NavController, private route: ActivatedRoute, private serverService: ServerService) {
-    this.server$ = this.serverService.getAll();
-  }
+  constructor(private navCtrl: NavController, private route: ActivatedRoute, private serverService: ServerService) {}
 
   ngOnInit(): void {
-    console.log(this.server$);
-
-    // this.server$ = this.serverService.getAll();
-    console.log(this.server$);
+    this.server$ = this.serverService.getAll();
   }
 
   onAdd(): void {
