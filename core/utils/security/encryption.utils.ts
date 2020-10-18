@@ -1,4 +1,4 @@
-import * as CryptoJS from 'crypto-js';
+import CryptoJS from 'crypto-js';
 import { Device } from '@ionic-native/device/ngx';
 import { Injectable, Inject, forwardRef } from '@angular/core';
 
@@ -6,16 +6,16 @@ import { Injectable, Inject, forwardRef } from '@angular/core';
 export class EncryptionUtils {
   private static PASSPHRASE: string;
 
-  constructor(@Inject(forwardRef(() => Device)) private device: Device) {
+  constructor(@Inject(forwardRef(() => Device)) private readonly device: Device) {
     EncryptionUtils.PASSPHRASE = this.device.uuid;
   }
 
-  public decrypt(value: string): string {
+  decrypt(value: string): string {
     if (value || value.length !== 0) {
-      let decryptedValue = CryptoJS.AES.decrypt(value, EncryptionUtils.PASSPHRASE);
+      let decryptedValue = CryptoJS.AES.decrypt(value, EncryptionUtils.PASSPHRASE).toString(CryptoJS.enc.Utf8);
 
       if (decryptedValue !== null) {
-        decryptedValue = decryptedValue.toString(CryptoJS.enc.Utf8);
+        decryptedValue = decryptedValue;
       } else {
         decryptedValue = '';
       }
@@ -24,7 +24,7 @@ export class EncryptionUtils {
     }
   }
 
-  public encrypt(value: string): string {
+  encrypt(value: string): string {
     if (value || value.length !== 0) {
       return CryptoJS.AES.encrypt(value, EncryptionUtils.PASSPHRASE).toString();
     }

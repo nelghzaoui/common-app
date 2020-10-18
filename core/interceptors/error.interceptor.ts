@@ -6,7 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 export class ErrorIntercept implements HttpInterceptor {
-  constructor(private network: Network, private readonly platform: Platform) {}
+  constructor(private readonly network: Network, private readonly platform: Platform) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(

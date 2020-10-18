@@ -6,7 +6,7 @@ import { ComponentRef } from '@ionic/core';
 export class ModalUtils {
   constructor(private modalCtrl: ModalController) {}
 
-  public async present(component: ComponentRef): Promise<void> {
+  async present(component: ComponentRef): Promise<void> {
     const modal: HTMLIonModalElement = await this.modalCtrl.create({
       component: component,
       cssClass: 'modal'
@@ -15,7 +15,7 @@ export class ModalUtils {
     return await modal.present();
   }
 
-  public dismiss(): void {
+  dismiss(): void {
     this.modalCtrl.getTop().then((element: HTMLIonModalElement) => {
       if (element) this.modalCtrl.dismiss();
     });
