@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { MultiTranslateHttpLoader } from 'ngx-translate-multi-http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
+import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HELPERS } from './helpers';
@@ -23,9 +23,8 @@ export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
 
 export const MODULES = [
   CommonModule,
-  Apollo,
-  HttpLinkModule,
   HttpClientModule,
+  HttpLinkModule,
   TranslateModule.forRoot({
     defaultLanguage: 'en',
     loader: {
@@ -44,7 +43,7 @@ export const MODULES = [
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
-        return { cache: new InMemoryCache(), link: httpLink.create({ uri: 'http://localhost:3000?graphql' }) };
+        return { cache: new InMemoryCache(), link: httpLink.create({ uri: 'http://localhost:3000/graphql' }) };
       },
       deps: [HttpLink]
     }

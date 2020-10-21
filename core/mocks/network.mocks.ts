@@ -4,13 +4,13 @@ import { Observable, Observer } from 'rxjs';
 
 @Injectable()
 export class NetworkMock extends Network {
-  get type(): string {
-    return 'wifi';
-  }
+  // get type(): string {
+  //   return 'wifi';
+  // }
 
-  get downlinkMax(): string {
-    return '';
-  }
+  // get downlinkMax(): string {
+  //   return '';
+  // }
 
   onChange(): Observable<any> {
     return Observable.create((observer: Observer<any>) => {
