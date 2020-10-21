@@ -4,9 +4,9 @@ import { ActionSheetButton } from '@ionic/core';
 
 @Injectable()
 export class ActionSheetUtils {
-  constructor(private actionSheetCtrl: ActionSheetController) {}
+  constructor(private readonly actionSheetCtrl: ActionSheetController) {}
 
-  public async present(headers: string, buttons: ActionSheetButton[]): Promise<void> {
+  async present(headers: string, buttons: ActionSheetButton[]): Promise<void> {
     const actionSheet: HTMLIonActionSheetElement = await this.actionSheetCtrl.create({
       header: headers,
       buttons: buttons,

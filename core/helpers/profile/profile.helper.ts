@@ -6,7 +6,7 @@ import { Profile } from './profile.class';
 export class ProfileHelper {
   profiles: Profile[] = [];
 
-  constructor(private secureStorage: SecureStorage) {}
+  constructor(private readonly secureStorage: SecureStorage) {}
 
   create(profile: Profile, replace = true): void {
     if (this.exist(profile.id)) {

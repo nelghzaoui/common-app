@@ -3,9 +3,9 @@ import { LoadingController } from '@ionic/angular';
 
 @Injectable()
 export class LoadingUtils {
-  constructor(public loadingCtrl: LoadingController) {}
+  constructor(private readonly loadingCtrl: LoadingController) {}
 
-  public async present(message = ''): Promise<void> {
+  async present(message = ''): Promise<void> {
     const loading: HTMLIonLoadingElement = await this.loadingCtrl.create({
       message: message,
       showBackdrop: true
@@ -14,7 +14,7 @@ export class LoadingUtils {
     await loading.present();
   }
 
-  public dismiss(): void {
+  dismiss(): void {
     this.loadingCtrl.dismiss();
   }
 }

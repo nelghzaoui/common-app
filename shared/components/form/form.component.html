@@ -1,1 +1,9 @@
-<p>form!</p>
+<form [formGroup]="form" (ngSubmit)="onSend()">
+  <ion-list *ngFor="let input of inputsList">
+    <ion-item>
+      <ion-label position="stacked">{{ label + input | translate }}</ion-label>
+      <ion-input [formControlName]="input"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button type="submit" class="ion-padding" expand="block">{{ label + 'btn' | translate }}</ion-button>
+</form>

@@ -5,9 +5,9 @@ import { MessageType } from '@core/models/api/message-type.class';
 
 @Injectable()
 export class AlertUtils {
-  constructor(private alertCtrl: AlertController, private zone: NgZone) {}
+  constructor(private readonly alertCtrl: AlertController, private readonly zone: NgZone) {}
 
-  public async present(
+  async present(
     message: string,
     cancelButton: string,
     cancel: () => void,
@@ -38,7 +38,7 @@ export class AlertUtils {
     this.show(message, buttons, callback);
   }
 
-  public async presentError(errors: MessageType[], callback?: () => void): Promise<void> {
+  async presentError(errors: MessageType[], callback?: () => void): Promise<void> {
     let message: string;
     for (const error of errors) {
       message += error.description;
