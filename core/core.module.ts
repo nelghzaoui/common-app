@@ -8,6 +8,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HELPERS } from './helpers';
 import { UTILS } from './utils';
+import { environment } from '@environments/environment';
 
 export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
   const prefix = './assets/languages';
@@ -43,7 +44,10 @@ export const MODULES = [
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {
-        return { cache: new InMemoryCache(), link: httpLink.create({ uri: 'http://localhost:3000/graphql' }) };
+        return {
+          cache: new InMemoryCache({ addTypename: false }),
+          link: httpLink.create({ uri: environment.server.url })
+        };
       },
       deps: [HttpLink]
     }
