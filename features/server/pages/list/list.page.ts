@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import gql from 'graphql-tag';
 
 import { Item } from '@core/models/item.interface';
-import { Server } from '@server/models/server.class';
 import { ServerService } from '@server/services/server.service';
+import { ServerType } from 'src/generated/graphql';
 
 @Component({
   selector: 'server-list',
@@ -16,33 +13,16 @@ import { ServerService } from '@server/services/server.service';
   styleUrls: ['./list.page.scss']
 })
 export class ListPage implements OnInit {
-  data: Observable<any>;
-  server$: Observable<Server[]>;
+  server$: Observable<ServerType[]>;
 
   constructor(
-    private apollo: Apollo,
-    private navCtrl: NavController,
-    private route: ActivatedRoute,
-    private serverService: ServerService
+    private readonly navCtrl: NavController,
+    private readonly route: ActivatedRoute,
+    private readonly serverService: ServerService
   ) {}
 
   ngOnInit(): void {
     this.server$ = this.serverService.getAll();
-    // TODO: Implement GraphQL HTTP CALL
-    // this.data = this.apollo
-    //   .watchQuery({
-    //     query: gql`
-    //       {
-    //         getServers {
-    //           id
-    //           name
-    //           url
-    //           port
-    //         }
-    //       }
-    //     `
-    //   })
-    //   .valueChanges.pipe(map(({ data }: any) => data.getServers));
   }
 
   onAdd(): void {

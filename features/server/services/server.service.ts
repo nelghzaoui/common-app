@@ -1,38 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpHelper } from '@core/helpers/http/http.helper';
 import { Observable } from 'rxjs';
-import { Server } from '../models/server.class';
-import { AddServerRequest, SERVER_API } from './server.api';
+import { map } from 'rxjs/operators';
+import { ServerGQL, ServersGQL, ServerType } from 'src/generated/graphql';
 
 @Injectable()
 export class ServerService {
-  constructor(private httpHelper: HttpHelper) {}
+  constructor(private readonly serverGQL: ServerGQL, private readonly serversGQL: ServersGQL) {}
 
-  public getAll(): Observable<Server[]> {
-    return this.httpHelper.get<Server[]>(SERVER_API.ADD, {}, false);
+  getAll(): Observable<ServerType[]> {
+    return this.serversGQL.watch().valueChanges.pipe(map((result) => result.data.servers));
   }
 
-  public async add(server: Server): Promise<string> {
-    const request: AddServerRequest = {
-      server: server
-    };
-
-    const id = await this.httpHelper.post<string>(SERVER_API.ADD, request);
-
-    return id;
+  get(id: string): Observable<ServerType> {
+    return this.serverGQL.fetch().pipe(map((result) => result.data.server));
   }
-
-  // public async update(server: Server): Promise<string> {
-  //   const request: AddServerRequest = {
-  //     server: server
-  //   };
-
-  //   const id = await this.httpHelper.post<string>(`${SERVER_API.ADD}/${id}`, request);
-
-  //   return id;
-  // }
-
-  // public async getAll(): Observable<Server[]> {
-  //   this.httpHelper.post(SERVER_API.ADD)
-  // }
 }
