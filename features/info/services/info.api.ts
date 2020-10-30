@@ -14,9 +14,3 @@ export interface ProfileRequest {
   deviceName: string;
   profileName: string;
 }
-
-export interface InfoServiceFacade {
-  getLegalNoticeDocument(): Promise<string>;
-  deleteProfile(profile: Profile): Promise<boolean>;
-  updateProfile(profile: Profile): Promise<boolean>;
-}

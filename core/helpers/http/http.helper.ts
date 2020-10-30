@@ -4,20 +4,19 @@ import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { from, Observable } from 'rxjs';
 
-import { MessageType } from '@core/models/api/message-type.class';
+import { ErrorStatus, MessageType } from '@core/models/api';
 import { LoadingUtils } from '@core/utils/components/loading.utils';
 import { environment } from '@environments/environment';
-import { ErrorStatus } from './error-status.enum';
 import { HTTPMethod } from './http-method.enum';
 import { Request } from './request.class';
 
 @Injectable()
 export class HttpHelper {
   constructor(
-    private loadingUtils: LoadingUtils,
-    private http: HTTP,
-    private network: Network,
-    private platform: Platform
+    private readonly http: HTTP,
+    private readonly loadingUtils: LoadingUtils,
+    private readonly network: Network,
+    private readonly platform: Platform
   ) {
     this.http.setServerTrustMode(environment.server.sslPinning);
   }
@@ -80,8 +79,7 @@ export class HttpHelper {
     return errors;
   }
 
-  // Show logs
-  private log(message: string, logs: Request | any): void {
+  private log(message: string, logs: Request): void {
     if (environment.logLevel === 4) {
       console.groupCollapsed(`[${new Date()}] ${message} -------------`);
       console.log(logs);

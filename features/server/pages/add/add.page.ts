@@ -15,10 +15,10 @@ export class AddPage implements OnInit {
   form: FormGroup;
 
   constructor(
-    private builder: FormBuilder,
-    private navCtrl: NavController,
-    private serverService: ServerService,
-    private route: ActivatedRoute
+    private readonly builder: FormBuilder,
+    private readonly navCtrl: NavController,
+    private readonly serverService: ServerService,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -30,8 +30,9 @@ export class AddPage implements OnInit {
   }
 
   onAdd(): void {
-    this.serverService.add(this.form.value as Server).then(() => {
-      this.navCtrl.navigateForward(['../list'], { relativeTo: this.route });
-    });
+    //TODO: Adapt to mutate gql
+    // this.serverService.add(this.form.value as Server).then(() => {
+    //   this.navCtrl.navigateForward(['../list'], { relativeTo: this.route });
+    // });
   }
 }

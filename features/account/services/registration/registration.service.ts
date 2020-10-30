@@ -17,24 +17,22 @@ import { Account } from '@account/models/account.class';
 
 @Injectable()
 export class RegistrationService implements RegistrationServiceFacade {
-  constructor(
-    private httpHelper: HttpHelper // private profileHelper: ProfileHelper
-  ) {}
+  constructor(private readonly profileHelper: ProfileHelper) {}
 
-  register(account: Account): Promise<AccountResponse> {
-    const request: AccountRequest = {
-      account: account
-    };
+  // register(account: Account): Promise<AccountResponse> {
+  //   const request: AccountRequest = {
+  //     account: account
+  //   };
+  //     // TODO: transform this call to GQL
+  //   return this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request);
 
-    return this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request);
-
-    // return new Promise((resolve, reject) => {
-    //   this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request).subscribe(
-    //     (response) => resolve(response),
-    //     (error) => reject(error)
-    //   );
-    // });
-  }
+  // return new Promise((resolve, reject) => {
+  //   this.httpHelper.post<AccountResponse>(REGISTRATION_API.REGISTER, request).subscribe(
+  //     (response) => resolve(response),
+  //     (error) => reject(error)
+  //   );
+  // });
+  // }
 
   // activateProfile(request: ActivateProfile): Promise<Profile> {
   //   return new Promise((resolve, reject) => {
