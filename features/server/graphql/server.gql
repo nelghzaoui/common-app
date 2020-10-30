@@ -1,0 +1,17 @@
+query servers {
+  servers {
+    id
+    name
+    url
+    port
+  }
+}
+
+query server($id: String!) {
+  server(id: $id) {
+    id
+    name
+    url
+    port
+  }
+}

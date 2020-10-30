@@ -1,0 +1,21 @@
+query accounts {
+  accounts {
+    id
+    name
+    username
+    email
+    password
+    creationDate
+  }
+}
+
+query account($id: String!) {
+  account(id: $id) {
+    id
+    name
+    username
+    email
+    password
+    creationDate
+  }
+}
