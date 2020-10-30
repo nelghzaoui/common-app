@@ -30,8 +30,8 @@ export class RegistrationPage implements OnInit {
   }
 
   onRegister(): void {
-    this.registrationService.register(this.form.value as Account).then(() => {
-      this.navCtrl.navigateForward(['./auth'], { relativeTo: this.route });
-    });
+    // this.registrationService.register(this.form.value as Account).then(() => {
+    //   this.navCtrl.navigateForward(['./auth'], { relativeTo: this.route });
+    // });
   }
 }
