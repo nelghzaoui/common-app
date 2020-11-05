@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
-import { Server } from '@server/models/server.class';
 import { ServerService } from '@server/services/server.service';
 
 @Component({
@@ -30,9 +29,11 @@ export class AddPage implements OnInit {
   }
 
   onAdd(): void {
-    //TODO: Adapt to mutate gql
-    // this.serverService.add(this.form.value as Server).then(() => {
-    //   this.navCtrl.navigateForward(['../list'], { relativeTo: this.route });
-    // });
+    this.serverService
+      .add(this.form.value)
+      .then(() => {
+        this.navCtrl.navigateForward(['../list'], { relativeTo: this.route });
+      })
+      .catch((e) => console.log(e));
   }
 }

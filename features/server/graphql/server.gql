@@ -15,3 +15,30 @@ query server($id: String!) {
     port
   }
 }
+
+mutation addServer($input: ServerInput!) {
+  addServer(input: $input) {
+    id
+    name
+    url
+    port
+  }
+}
+
+mutation updateServer($input: ServerInput!, $id: String!) {
+  updateServer(input: $input, id: $id) {
+    id
+    name
+    url
+    port
+  }
+}
+
+mutation deleteServer($id: String!) {
+  deleteServer(id: $id) {
+    id
+    name
+    url
+    port
+  }
+}

@@ -14,10 +14,11 @@ export class RegistrationPage implements OnInit {
   form: FormGroup;
 
   constructor(
-    private builder: FormBuilder,
-    private navCtrl: NavController,
-    private registrationService: RegistrationService,
-    private route: ActivatedRoute
+    private readonly builder: FormBuilder,
+    private readonly navCtrl: NavController,
+    // FIXME: Caused a bug due to secure storage in profile helper
+    // private readonly registrationService: RegistrationService,
+    private readonly route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
