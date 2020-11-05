@@ -4,20 +4,24 @@ import { ComponentRef } from '@ionic/core';
 
 @Injectable()
 export class PopoverUtils {
+  popover: HTMLIonPopoverElement;
+
   constructor(private readonly popoverCtrl: PopoverController) {}
 
-  async present(component: ComponentRef, event?: Event): Promise<void> {
-    const popover: HTMLIonPopoverElement = await this.popoverCtrl.create({
+  async present(component: ComponentRef, params?: any, event?: Event): Promise<void> {
+    this.popover = await this.popoverCtrl.create({
       component: component,
+      componentProps: params,
       event: event,
+      showBackdrop: false,
       translucent: true,
       cssClass: 'popover'
     });
 
-    return await popover.present();
+    return await this.popover.present();
   }
 
-  dismiss(): void {
+  close(): void {
     this.popoverCtrl.getTop().then((element: HTMLIonPopoverElement) => {
       if (element) this.popoverCtrl.dismiss();
     });
