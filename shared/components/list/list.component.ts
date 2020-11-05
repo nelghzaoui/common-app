@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Item } from '@core/models/item.interface';
+import { Item } from '@shared/models/item.interface';
 
 @Component({
   selector: 'list-component',
@@ -9,20 +9,13 @@ import { Item } from '@core/models/item.interface';
 export class ListComponent {
   @Input() items: Item[];
   @Output() redirect = new EventEmitter<Item>();
-  @Output() edit = new EventEmitter<Item>();
-  @Output() remove = new EventEmitter<Item>();
+  @Output() action = new EventEmitter<Item>();
 
-  constructor() {}
-
-  onEdit(item: Item): void {
-    this.edit.emit(item);
+  onAction(item: Item): void {
+    this.action.emit(item);
   }
 
   onRedirect(item: Item): void {
     this.redirect.emit(item);
-  }
-
-  onRemove(item: Item): void {
-    this.remove.emit(item);
   }
 }

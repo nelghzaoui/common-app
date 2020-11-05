@@ -3,11 +3,11 @@ import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { Item } from '@core/models/item.interface';
 import { PopoverUtils } from '@core/utils/components/popover.utils';
 import { ServerService } from '@server/services/server.service';
+import { ListActionPopover } from '@shared/components/list-action/list-action.popover';
+import { Item, ListAction } from '@shared/models';
 import { ServerType } from 'src/generated/graphql';
-import { PopoverComponent } from '@shared/components/popover/popover.component';
 
 @Component({
   selector: 'server-list',
@@ -29,14 +29,36 @@ export class ListPage implements OnInit {
   }
 
   onAdd(): void {
-    this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
+    this.redirect(ListAction.CREATE);
   }
 
-  async onEdit(): Promise<void> {
-    await this.popoverUtils.present(PopoverComponent);
+  async onAction(item: Item): Promise<void> {
+    await this.popoverUtils.present(ListActionPopover, { item: item });
+    const action = await this.popoverUtils.popover.onDidDismiss();
+    this.redirect(action.data, item);
   }
 
-  async onRedirect(item: Item): Promise<void> {
-    this.navCtrl.navigateForward(['../../../account'], { state: item });
+  onRedirect(item: Item): void {
+    this.redirect(ListAction.READ, item);
+  }
+
+  private async redirect(action: ListAction, item?: Item): Promise<void> {
+    switch (action) {
+      case ListAction.CREATE:
+        this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
+        break;
+      case ListAction.READ:
+        this.navCtrl.navigateForward(['../../../account'], { state: item });
+        break;
+      case ListAction.UPDATE:
+        this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
+        break;
+      case ListAction.DELETE:
+        const server = await this.serverService.delete(item.id);
+        console.log(server, 'has been remove');
+        break;
+      default:
+        break;
+    }
   }
 }
