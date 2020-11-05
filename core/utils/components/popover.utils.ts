@@ -6,7 +6,7 @@ import { ComponentRef } from '@ionic/core';
 export class PopoverUtils {
   constructor(private readonly popoverCtrl: PopoverController) {}
 
-  async present(component: ComponentRef, event: Event): Promise<void> {
+  async present(component: ComponentRef, event?: Event): Promise<void> {
     const popover: HTMLIonPopoverElement = await this.popoverCtrl.create({
       component: component,
       event: event,

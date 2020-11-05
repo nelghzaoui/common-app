@@ -6,7 +6,7 @@
 
 <ion-content>
   <ng-container>
-    <list-component [items]="server$ | async" (redirect)="onRedirect($event)"></list-component>
+    <list-component [items]="server$ | async" (redirect)="onRedirect($event)" (edit)="onEdit($event)"></list-component>
   </ng-container>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

@@ -1,6 +1,6 @@
 <ng-container *ngIf="items; else loading">
   <ng-container *ngIf="items.length; else empty">
-    <ion-list *ngFor="let item of items" (click)="onRedirect(item)">
+    <ion-list *ngFor="let item of items" (click)="onRedirect(item)" (press)="onEdit(item)">
       <ion-item>
         <ion-label>{{ item.name }}</ion-label>
       </ion-item>

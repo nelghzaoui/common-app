@@ -14,10 +14,6 @@ export class ListComponent {
 
   constructor() {}
 
-  onAdd(): void {
-    console.log('add server');
-  }
-
   onEdit(item: Item): void {
     this.edit.emit(item);
   }
