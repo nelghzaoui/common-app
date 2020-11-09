@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PopoverUtils } from '@core/utils';
+import { PopoverTool } from '@core/tools/components/popover.tool';
 import { ListAction } from '@shared/models/list-action.enum';
 
 @Component({
@@ -8,17 +8,17 @@ import { ListAction } from '@shared/models/list-action.enum';
   styleUrls: ['./list-action.popover.scss']
 })
 export class ListActionPopover {
-  constructor(private readonly popoverUtils: PopoverUtils) {}
+  constructor(private readonly popoverTool: PopoverTool) {}
 
   onRedirect(): void {
-    this.popoverUtils.popover.dismiss(ListAction.READ);
+    this.popoverTool.popover.dismiss(ListAction.READ);
   }
 
   onUpdate(): void {
-    this.popoverUtils.popover.dismiss(ListAction.UPDATE);
+    this.popoverTool.popover.dismiss(ListAction.UPDATE);
   }
 
   onRemove(): void {
-    this.popoverUtils.popover.dismiss(ListAction.DELETE);
+    this.popoverTool.popover.dismiss(ListAction.DELETE);
   }
 }

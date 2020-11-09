@@ -5,7 +5,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { from, Observable } from 'rxjs';
 
 import { ErrorStatus, MessageType } from '@core/models/api';
-import { LoadingUtils } from '@core/utils/components/loading.utils';
+import { LoadingTool } from '@core/tools/components/loading.tool';
 import { environment } from '@environments/environment';
 import { HTTPMethod } from './http-method.enum';
 import { Request } from './request.class';
@@ -14,7 +14,7 @@ import { Request } from './request.class';
 export class HttpHelper {
   constructor(
     private readonly http: HTTP,
-    private readonly loadingUtils: LoadingUtils,
+    private readonly loadingTool: LoadingTool,
     private readonly network: Network,
     private readonly platform: Platform
   ) {
@@ -39,7 +39,7 @@ export class HttpHelper {
 
   private request<T>(method: HTTPMethod, service: string, parameters = {}, showLoading: boolean): Promise<T> {
     return new Promise((resolve, reject) => {
-      if (showLoading) this.loadingUtils.present();
+      if (showLoading) this.loadingTool.present();
 
       const request = new Request(service, parameters, {}, showLoading);
 
@@ -52,7 +52,7 @@ export class HttpHelper {
         })
         .catch((e: HTTPResponse) => reject(this.handleError(e)))
         .finally(() => {
-          if (showLoading) this.loadingUtils.dismiss();
+          if (showLoading) this.loadingTool.dismiss();
         });
     });
   }

@@ -6,9 +6,10 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HELPERS } from './helpers';
-import { UTILS } from './utils';
+
 import { environment } from '@environments/environment';
+import { HELPERS } from './helpers';
+import { TOOLS } from './tools';
 
 export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
   const prefix = './assets/languages';
@@ -40,7 +41,7 @@ export const MODULES = [
   imports: [MODULES],
   providers: [
     HELPERS,
-    UTILS,
+    TOOLS,
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {

@@ -3,7 +3,7 @@ import { PopoverController } from '@ionic/angular';
 import { ComponentRef } from '@ionic/core';
 
 @Injectable()
-export class PopoverUtils {
+export class PopoverTool {
   popover: HTMLIonPopoverElement;
 
   constructor(private readonly popoverCtrl: PopoverController) {}

@@ -3,11 +3,11 @@ import { ModalController } from '@ionic/angular';
 import { ComponentRef } from '@ionic/core';
 
 @Injectable()
-export class ModalUtils {
+export class ModalTool {
   constructor(private modalCtrl: ModalController) {}
 
   async present(component: ComponentRef): Promise<void> {
-    const modal: HTMLIonModalElement = await this.modalCtrl.create({
+    const modal = await this.modalCtrl.create({
       component: component,
       cssClass: 'modal'
     });

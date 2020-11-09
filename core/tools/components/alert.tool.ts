@@ -4,7 +4,7 @@ import { AlertButton } from '@ionic/core';
 import { MessageType } from '@core/models/api/message-type.class';
 
 @Injectable()
-export class AlertUtils {
+export class AlertTool {
   constructor(private readonly alertCtrl: AlertController, private readonly zone: NgZone) {}
 
   async present(
@@ -54,7 +54,7 @@ export class AlertUtils {
   }
 
   private async show(message: string, buttons: AlertButton[], callback?: () => void): Promise<void> {
-    const alert: HTMLIonAlertElement = await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       message: message,
       buttons: buttons,
       cssClass: 'alert'

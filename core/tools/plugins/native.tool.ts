@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as MOCKS from '@core/mocks';
 
 @Injectable()
-export class NativeUtils {
+export class NativeTool {
   public static getMocks(): any[] {
     let plugins = null;
 

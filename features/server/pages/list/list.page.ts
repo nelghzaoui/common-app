@@ -3,7 +3,7 @@ import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { PopoverUtils } from '@core/utils/components/popover.utils';
+import { PopoverTool } from '@core/tools/components/popover.tool';
 import { ServerService } from '@server/services/server.service';
 import { ListActionPopover } from '@shared/components/list-action/list-action.popover';
 import { Item, ListAction } from '@shared/models';
@@ -19,7 +19,7 @@ export class ListPage implements OnInit {
 
   constructor(
     private readonly navCtrl: NavController,
-    private readonly popoverUtils: PopoverUtils,
+    private readonly popoverTool: PopoverTool,
     private readonly route: ActivatedRoute,
     private readonly serverService: ServerService
   ) {}
@@ -33,8 +33,8 @@ export class ListPage implements OnInit {
   }
 
   async onAction(item: Item): Promise<void> {
-    await this.popoverUtils.present(ListActionPopover, { item: item });
-    const action = await this.popoverUtils.popover.onDidDismiss();
+    await this.popoverTool.present(ListActionPopover, { item: item });
+    const action = await this.popoverTool.popover.onDidDismiss();
     this.redirect(action.data, item);
   }
 

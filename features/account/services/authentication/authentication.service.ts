@@ -8,13 +8,13 @@
 // } from './authentication.api';
 // import { HttpPlugin } from '@core/plugins/http/http.plugin';
 // import { UserDevice } from '@core/models/dto/user-device.interface';
-// import { EncryptionUtils } from '@core/utils/security/encryption.utils';
+// import { EncryptionTool } from '@core/tools/security/encryption.tool';
 
 // @Injectable({
 //   providedIn: 'root'
 // })
 // export class AuthenticationService implements AuthenticationServiceFacade {
-//   constructor(private encryptionUtils: EncryptionUtils, private httpPlugin: HttpPlugin) {}
+//   constructor(private encryptionTool: EncryptionTool, private httpPlugin: HttpPlugin) {}
 
 //   initLogin(request: UserDevice, inputs: LoginForm): Promise<boolean> {
 //     return new Promise((resolve, reject) => {
@@ -31,7 +31,7 @@
 
 //   private login(params: UserDevice, seedOperation: string): Promise<boolean> {
 //     return new Promise((resolve, reject) => {
-//       const hashPin: string = this.encryptionUtils.encrypt(form.password);
+//       const hashPin: string = this.encryptionTool.encrypt(form.password);
 //       const totp: string = SecurityUtils.generateTOTP(form.profile.seedDevice, seedOperation);
 //       const request = {
 //         appVersion: params.appVersion,
