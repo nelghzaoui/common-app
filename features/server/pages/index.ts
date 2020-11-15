@@ -1,4 +1,4 @@
-import { AddPage } from './add/add.page';
+import { FormPage } from './form/form.page';
 import { ListPage } from './list/list.page';
 
-export { AddPage, ListPage };
+export { FormPage, ListPage };

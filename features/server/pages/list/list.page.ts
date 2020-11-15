@@ -51,7 +51,7 @@ export class ListPage implements OnInit {
         this.navCtrl.navigateForward(['../../../account'], { state: item });
         break;
       case ListAction.UPDATE:
-        this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
+        this.navCtrl.navigateForward(['../edit'], { state: { server: item }, relativeTo: this.route });
         break;
       case ListAction.DELETE:
         const server = await this.serverService.delete(item.id);
