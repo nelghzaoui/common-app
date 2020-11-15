@@ -9,8 +9,8 @@ import { LAYOUT } from './layout';
 export const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, TranslateModule];
 
 @NgModule({
-  declarations: [COMPONENTS, LAYOUT],
+  declarations: [LAYOUT, COMPONENTS],
   imports: [MODULES],
-  exports: [MODULES, COMPONENTS, LAYOUT]
+  exports: [MODULES, LAYOUT, COMPONENTS]
 })
 export class SharedModule {}

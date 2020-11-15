@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'toolbar-component',
@@ -7,9 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ToolbarComponent {
   @Input() title: string;
-  @Output() click = new EventEmitter<Event>();
+  @Output() cliked = new EventEmitter();
 
   onClick(): void {
-    this.click.emit();
+    this.cliked.emit();
   }
 }
