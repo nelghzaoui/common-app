@@ -1,15 +1,20 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'toolbar-component',
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   @Input() title: string;
-  @Output() cliked = new EventEmitter();
+  @Output() clicked = new EventEmitter<MouseEvent>();
+  isShown: boolean;
+
+  ngOnInit(): void {
+    this.isShown = this.clicked.observers.length > 0;
+  }
 
   onClick(): void {
-    this.cliked.emit();
+    this.clicked.emit();
   }
 }

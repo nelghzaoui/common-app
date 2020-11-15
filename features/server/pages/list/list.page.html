@@ -1,5 +1,5 @@
 <toolbar-layout>
-  <toolbar-component (cliked)="onAdd()" title="server.list.title"></toolbar-component>
+  <toolbar-component (clicked)="onAdd()" title="server.list.title"></toolbar-component>
   <list-component
     [items]="server$ | async"
     (redirect)="onRedirect($event)"
