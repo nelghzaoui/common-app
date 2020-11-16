@@ -7,8 +7,7 @@ import * as PAGES from './pages';
 import { ServerService } from './services/server.service';
 
 const ROUTES: Routes = [
-  { path: '', redirectTo: 'list' },
-  { path: 'list', component: PAGES.ListPage },
+  { path: '', component: PAGES.ListPage },
   { path: 'add', component: PAGES.FormPage },
   { path: 'edit', component: PAGES.FormPage }
 ];

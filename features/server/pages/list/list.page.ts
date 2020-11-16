@@ -45,13 +45,13 @@ export class ListPage implements OnInit {
   private async redirect(action: ListAction, item?: Item): Promise<void> {
     switch (action) {
       case ListAction.CREATE:
-        this.navCtrl.navigateForward(['../add'], { relativeTo: this.route });
+        this.navCtrl.navigateForward(['./add'], { relativeTo: this.route });
         break;
       case ListAction.READ:
-        this.navCtrl.navigateForward(['../../../account'], { state: item });
+        this.navCtrl.navigateForward(['account'], { state: item });
         break;
       case ListAction.UPDATE:
-        this.navCtrl.navigateForward(['../edit'], { state: { server: item }, relativeTo: this.route });
+        this.navCtrl.navigateForward(['./edit'], { state: { server: item }, relativeTo: this.route });
         break;
       case ListAction.DELETE:
         const server = await this.serverService.delete(item.id);
