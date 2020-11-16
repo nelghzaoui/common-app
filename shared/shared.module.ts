@@ -4,13 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { COMPONENTS } from './components';
-import { LAYOUT } from './layout';
 
 export const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, TranslateModule];
 
 @NgModule({
-  declarations: [LAYOUT, COMPONENTS],
+  declarations: [COMPONENTS],
   imports: [MODULES],
-  exports: [MODULES, LAYOUT, COMPONENTS]
+  exports: [MODULES, COMPONENTS]
 })
 export class SharedModule {}
