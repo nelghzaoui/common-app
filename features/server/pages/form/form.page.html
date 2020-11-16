@@ -3,30 +3,5 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="form">
-    <ion-text color="primary" class="ion-text-center">
-      <h2>{{ title | translate }}</h2>
-    </ion-text>
-
-    <ion-list>
-      <ion-item>
-        <ion-label position="stacked">{{ 'server.form.common.name' | translate }}</ion-label>
-        <ion-input formControlName="name">{{ server?.name }}</ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">{{ 'server.form.common.url' | translate }}</ion-label>
-        <ion-input formControlName="url">{{ server?.url }}</ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">{{ 'server.form.common.port' | translate }}</ion-label>
-        <ion-input type="number" formControlName="port">{{ server?.port }}</ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-button (click)="onSubmit()" type="submit" class="ion-margin" expand="block">
-      {{ buttonLabel | translate }}
-    </ion-button>
-  </form>
+  <form-component [labels]="labels" [inputs]="forms" (send)="onSubmit($event)"></form-component>
 </ion-content>

@@ -1,9 +1,16 @@
-<form [formGroup]="form" (ngSubmit)="onSend()">
-  <ion-list *ngFor="let input of inputsList">
+<form [formGroup]="form">
+  <ion-text color="primary" class="ion-text-center">
+    <h2>{{ 'core.forms.title.' + labels[0] | translate }}</h2>
+  </ion-text>
+
+  <ion-list *ngFor="let input of inputs; let i = index">
     <ion-item>
-      <ion-label position="stacked">{{ label + input | translate }}</ion-label>
-      <ion-input [formControlName]="input"></ion-input>
+      <ion-label position="stacked">{{ 'core.forms.field.' + input | translate }}</ion-label>
+      <ion-input [formControlName]="input" [type]="input == 'port' ? 'number' : 'text'"></ion-input>
     </ion-item>
   </ion-list>
-  <ion-button type="submit" class="ion-padding" expand="block">{{ label + 'btn' | translate }}</ion-button>
+
+  <ion-button (click)="onSend()" type="submit" class="ion-margin" expand="block">
+    {{ 'core.forms.button.' + labels[1] | translate }}
+  </ion-button>
 </form>

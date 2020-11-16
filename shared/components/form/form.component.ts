@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'form-component',
@@ -8,17 +8,23 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class FormComponent implements OnInit {
   form: FormGroup;
-  @Input() inputsList: string[];
-  @Input() label: string;
+  @Input() inputs: string[];
+  @Input() labels: string[];
   @Output() send = new EventEmitter();
 
-  constructor(public builder: FormBuilder) {}
+  constructor(private builder: FormBuilder) {}
 
   ngOnInit(): void {
-    this.inputsList = Object.keys({ name: '', port: '', url: '' });
+    this.form = this.builder.group(this.inputs);
+    this.inputs = Object.keys(this.inputs);
+    console.log(this.inputs);
   }
 
   onSend(): void {
     this.send.emit(this.form.value);
+  }
+
+  get valid(): boolean {
+    return this.form.valid;
   }
 }

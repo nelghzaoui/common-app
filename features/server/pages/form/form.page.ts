@@ -12,14 +12,17 @@ import { ServerService } from '@server/services/server.service';
   styleUrls: ['./form.page.scss']
 })
 export class FormPage implements OnInit {
+  forms = {
+    name: ['', Validators.required],
+    url: ['', Validators.required],
+    port: ['', Validators.required]
+  };
+
   server: ServerInput;
-  form: FormGroup;
 
   constructor(
-    private readonly builder: FormBuilder,
     private readonly navCtrl: NavController,
     private readonly serverService: ServerService,
-    private readonly route: ActivatedRoute,
     private readonly router: Router
   ) {
     const state = this.router.getCurrentNavigation().extras.state;
@@ -27,30 +30,29 @@ export class FormPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.form = this.builder.group({
-      name: ['', Validators.required],
-      url: ['', Validators.required],
-      port: ['', Validators.required]
-    });
+    this.forms;
   }
 
-  async onSubmit(): Promise<void> {
+  async onSubmit(forms: ServerInput): Promise<void> {
     if (this.server) {
-      const server = await this.serverService.update(this.form.value);
+      //FIXME: expect ServerType params
+      const server = await this.serverService.update(forms);
       console.log('update', server);
     } else {
-      const server = await this.serverService.add(this.form.value);
+      console.log('add', forms);
+      //FIXME: port properties is string
+      const server = await this.serverService.add(forms);
       console.log('add', server);
     }
 
-    this.navCtrl.navigateForward(['../list'], { relativeTo: this.route });
+    this.navCtrl.pop();
   }
 
   get title(): string {
-    return `server.form.title.${this.server ? 'update' : 'add'}`;
+    return `core.forms.title.server-${this.server ? 'update' : 'add'}`;
   }
 
-  get buttonLabel(): string {
-    return `server.form.button.${this.server ? 'update' : 'add'}`;
+  get labels(): string[] {
+    return [`server-${this.server ? 'update' : 'add'}`, this.server ? 'update' : 'add'];
   }
 }
