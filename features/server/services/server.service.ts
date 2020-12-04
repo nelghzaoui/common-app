@@ -39,10 +39,10 @@ export class ServerService {
       .toPromise();
   }
 
-  update(server: ServerType): Promise<ServerType> {
+  update(id: string, server: ServerInput): Promise<ServerType> {
     console.log(server);
     return this.updateServerGQL
-      .mutate({ input: server, id: server.id })
+      .mutate({ id: id, input: server })
       .pipe(map((result) => result.data.updateServer))
       .toPromise();
   }

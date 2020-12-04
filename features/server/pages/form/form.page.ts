@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
-import { ServerInput } from 'src/generated/graphql';
+import { ServerInput, ServerType } from 'src/generated/graphql';
 import { ServerService } from '@server/services/server.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class FormPage implements OnInit {
     port: ['', Validators.required]
   };
 
-  server: ServerInput;
+  server: ServerType;
 
   constructor(
     private readonly navCtrl: NavController,
@@ -30,13 +30,17 @@ export class FormPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.forms;
+    if (this.server) {
+      this.forms.name[0] = this.server.name;
+      this.forms.url[0] = this.server.url;
+      this.forms.port[0] = this.server.port.toString();
+    }
   }
 
   async onSubmit(forms: ServerInput): Promise<void> {
     if (this.server) {
       //FIXME: expect ServerType params
-      const server = await this.serverService.update(forms);
+      const server = await this.serverService.update(this.server.id, forms);
       console.log('update', server);
     } else {
       console.log('add', forms);

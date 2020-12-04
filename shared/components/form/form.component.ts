@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'form-component',
@@ -17,7 +17,6 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.builder.group(this.inputs);
     this.inputs = Object.keys(this.inputs);
-    console.log(this.inputs);
   }
 
   onSend(): void {
