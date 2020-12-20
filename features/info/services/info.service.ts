@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Profile, ProfileHelper } from '@core/helpers/profile';
+import { Profile } from '@core/helpers/profile';
 import { INFO_API, ProfileRequest } from './info.api';
 
 @Injectable()
 export class InfoService {
-  constructor(private readonly profileHelper: ProfileHelper) {}
+  constructor() {}
 
   // TODO: transform this call to GQL
   // getLegalNoticeDocument(): Promise<string> {

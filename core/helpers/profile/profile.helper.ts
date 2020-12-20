@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { SecureStorage, SecureStorageObject } from '@ionic-native/secure-storage/ngx';
+import { Plugins } from '@capacitor/core';
 import { Profile } from './profile.class';
+
+const { Storage } = Plugins;
 
 @Injectable()
 export class ProfileHelper {
   profiles: Profile[] = [];
 
-  constructor(private readonly secureStorage: SecureStorage) {}
+  constructor() {}
 
   create(profile: Profile, replace = true): void {
     if (this.exist(profile.id)) {
@@ -31,16 +33,14 @@ export class ProfileHelper {
 
   load(): Promise<Profile[]> {
     return new Promise(async (resolve) => {
-      const storage = await this.storage();
+      const ids = (await Storage.keys()).keys;
 
-      const ids = await storage.keys();
-
-      if (ids && ids.length > 0) {
+      if (ids && ids.keys.length > 0) {
         for (const id of ids) {
-          const profileStr = await storage.get(id);
+          const profileStr = await Storage.get({ key: id });
           console.log(profileStr);
 
-          const profile = JSON.parse(profileStr) as Profile;
+          const profile = JSON.parse(profileStr.value) as Profile;
           console.log(profile);
 
           this.profiles.push(profile);
@@ -125,11 +125,6 @@ export class ProfileHelper {
       profiles.push(profile.toString());
     }
 
-    const storage = await this.storage();
-    storage.set(id, JSON.stringify(profiles)).then(() => console.log('added', profiles));
-  }
-
-  private async storage(): Promise<SecureStorageObject> {
-    return await this.secureStorage.create('profiles');
+    Storage.set({ key: id, value: JSON.stringify(profiles) }).then(() => console.log('added', profiles));
   }
 }
