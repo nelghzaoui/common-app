@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { HTTP, HTTPResponse } from '@ionic-native/http/ngx';
-import { Network } from '@ionic-native/network/ngx';
+import { Plugins } from '@capacitor/core';
+import { HttpResponse } from '@capacitor-community/http';
 import { from, Observable } from 'rxjs';
 
 import { ErrorStatus, MessageType } from '@core/models/api';
@@ -10,15 +10,13 @@ import { environment } from '@environments/environment';
 import { HTTPMethod } from './http-method.enum';
 import { Request } from './request.class';
 
+const { Network } = Plugins;
+
 @Injectable()
 export class HttpHelper {
-  constructor(
-    private readonly http: HTTP,
-    private readonly loadingTool: LoadingTool,
-    private readonly network: Network,
-    private readonly platform: Platform
-  ) {
-    this.http.setServerTrustMode(environment.server.sslPinning);
+  constructor(private readonly loadingTool: LoadingTool, private readonly platform: Platform) {
+    const { Http } = Plugins;
+    Http.setServerTrustMode(environment.server.sslPinning);
   }
 
   public get<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
@@ -43,25 +41,26 @@ export class HttpHelper {
 
       const request = new Request(service, parameters, {}, showLoading);
 
-      this.http
-        .sendRequest(request.url, { method: method, data: request.parameters, headers: {} })
-        .then((httpResponse: HTTPResponse) => {
+      const { Http } = Plugins;
+      Http.request(request.url, { method: method, data: request.parameters, headers: {} })
+        .then((httpResponse: HttpResponse) => {
           const response = JSON.parse(httpResponse.data);
           this.log('REQUEST', response);
           resolve(response);
         })
-        .catch((e: HTTPResponse) => reject(this.handleError(e)))
+        .catch((e: HttpResponse) => reject(this.handleError(e)))
         .finally(() => {
           if (showLoading) this.loadingTool.dismiss();
         });
     });
   }
 
-  private handleError(e: HTTPResponse): MessageType[] {
+  private async handleError(e): Promise<MessageType[]> {
     const errors: MessageType[] = [];
     const error = new MessageType(e.url, e.error, e.data, e.status);
 
-    if (this.platform.is('android') && this.network.type === this.network.Connection.NONE) {
+    const connectionType = (await Network.getStatus()).connectionType;
+    if (this.platform.is('android') && connectionType === connectionType['none']) {
       e.status = ErrorStatus.NOT_CONNECTED;
     }
 
