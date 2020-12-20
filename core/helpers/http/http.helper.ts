@@ -14,10 +14,7 @@ const { Network } = Plugins;
 
 @Injectable()
 export class HttpHelper {
-  constructor(private readonly loadingTool: LoadingTool, private readonly platform: Platform) {
-    const { Http } = Plugins;
-    Http.setServerTrustMode(environment.server.sslPinning);
-  }
+  constructor(private readonly loadingTool: LoadingTool, private readonly platform: Platform) {}
 
   public get<T>(service: string, parameters = {}, showLoading = true): Observable<T> {
     return from(this.request<T>(HTTPMethod.GET, service, parameters, showLoading));
@@ -42,7 +39,7 @@ export class HttpHelper {
       const request = new Request(service, parameters, {}, showLoading);
 
       const { Http } = Plugins;
-      Http.request(request.url, { method: method, data: request.parameters, headers: {} })
+      Http.request({ method: method, url: request.url, headers: {}, data: request.parameters })
         .then((httpResponse: HttpResponse) => {
           const response = JSON.parse(httpResponse.data);
           this.log('REQUEST', response);
