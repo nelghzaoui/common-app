@@ -1,13 +1,17 @@
 import CryptoJS from 'crypto-js';
-import { Device } from '@ionic-native/device/ngx';
-import { Injectable, Inject, forwardRef } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Plugins } from '@capacitor/core';
+
+const { Device } = Plugins;
 
 @Injectable()
 export class EncryptionTool {
   private static PASSPHRASE: string;
 
-  constructor(@Inject(forwardRef(() => Device)) private readonly device: Device) {
-    EncryptionTool.PASSPHRASE = this.device.uuid;
+  constructor() {
+    Device.getInfo().then((device) => {
+      EncryptionTool.PASSPHRASE = device.uuid;
+    });
   }
 
   decrypt(value: string): string {
