@@ -3,7 +3,6 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 
-import { ServerInput, ServerType } from 'src/generated/graphql';
 import { ServerService } from '@server/services/server.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class FormPage implements OnInit {
     port: ['', Validators.required]
   };
 
-  server: ServerType;
+  server;
 
   constructor(
     private readonly navCtrl: NavController,
@@ -37,7 +36,7 @@ export class FormPage implements OnInit {
     }
   }
 
-  async onSubmit(forms: ServerInput): Promise<void> {
+  async onSubmit(forms): Promise<void> {
     if (this.server) {
       //FIXME: expect ServerType params
       const server = await this.serverService.update(this.server.id, forms);

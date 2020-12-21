@@ -7,7 +7,6 @@ import { PopoverTool } from '@core/tools/components/popover.tool';
 import { ServerService } from '@server/services/server.service';
 import { ListActionPopover } from '@shared/components/list-action/list-action.popover';
 import { Item, ListAction } from '@shared/models';
-import { ServerType } from 'src/generated/graphql';
 
 @Component({
   selector: 'server-list',
@@ -15,7 +14,7 @@ import { ServerType } from 'src/generated/graphql';
   styleUrls: ['./list.page.scss']
 })
 export class ListPage implements OnInit {
-  server$: Observable<ServerType[]>;
+  server$: Observable<any[]>;
 
   constructor(
     private readonly navCtrl: NavController,
