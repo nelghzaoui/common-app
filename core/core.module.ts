@@ -22,23 +22,8 @@ export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
     { prefix: `${prefix}/shared/`, suffix: suffix }
   ]);
 }
-
-export const MODULES = [
-  CommonModule,
-  HttpClientModule,
-  HttpLinkModule,
-  TranslateModule.forRoot({
-    defaultLanguage: 'en',
-    loader: {
-      provide: TranslateLoader,
-      useFactory: HttpLoaderFactory,
-      deps: [HttpClient]
-    }
-  })
-];
-
 @NgModule({
-  imports: [MODULES],
+  imports: [CoreModule.MODULES],
   providers: [
     HELPERS,
     TOOLS,
@@ -54,4 +39,18 @@ export const MODULES = [
     }
   ]
 })
-export class CoreModule {}
+export class CoreModule {
+  private static MODULES = [
+    CommonModule,
+    HttpClientModule,
+    HttpLinkModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+  ];
+}
