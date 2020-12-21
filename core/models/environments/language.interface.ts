@@ -1,4 +1,14 @@
 export interface Language {
-  code: string;
+  code: LanguageCode;
   label: string;
+}
+
+export enum LanguageCode {
+  EN = 'en',
+  FR = 'fr'
+}
+
+export enum LanguageLabel {
+  ENGLISH = 'english',
+  FRENCH = 'français'
 }

@@ -1,5 +1,5 @@
 import { FirebaseConfig } from './firebase.interface';
-import { Language } from './language.interface';
+import { Language, LanguageCode, LanguageLabel } from './language.interface';
 export class BaseEnvironment {
   constructor(
     public dateFormat?: string,
@@ -11,8 +11,8 @@ export class BaseEnvironment {
     this.dateFormat = 'YYYY-MM-DD HH:mm:ssZ';
     this.errorCode = '';
     this.languages = [
-      { code: 'EN', label: 'English' },
-      { code: 'FR', label: 'Français' }
+      { code: LanguageCode.EN, label: LanguageLabel.ENGLISH },
+      { code: LanguageCode.FR, label: LanguageLabel.FRENCH }
     ];
     this.version = '0.0.1';
     this.firebase = {
