@@ -1,4 +1,5 @@
-import { LoginPage } from '@account/pages/login/login.page';
-import { RegistrationPage } from '@account/pages/registration/registration.page';
+import { HomePage } from './home/home.page';
+import { LoginPage } from './login/login.page';
+import { RegistrationPage } from './registration/registration.page';
 
-export { LoginPage, RegistrationPage };
+export { HomePage, LoginPage, RegistrationPage };
