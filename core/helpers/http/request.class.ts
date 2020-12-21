@@ -1,5 +1,3 @@
-import { environment } from '@environments/environment';
-
 export class Request {
   constructor(
     public url: string,
@@ -10,7 +8,5 @@ export class Request {
       [name: string]: string | string[];
     },
     public showLoading: boolean
-  ) {
-    this.url = environment.server.url + url;
-  }
+  ) {}
 }
