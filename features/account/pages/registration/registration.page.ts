@@ -16,8 +16,7 @@ export class RegistrationPage implements OnInit {
   constructor(
     private readonly builder: FormBuilder,
     private readonly navCtrl: NavController,
-    // FIXME: Caused a bug due to secure storage in profile helper
-    // private readonly registrationService: RegistrationService,
+    private readonly registrationService: RegistrationService,
     private readonly route: ActivatedRoute
   ) {}
 
@@ -31,8 +30,8 @@ export class RegistrationPage implements OnInit {
   }
 
   onRegister(): void {
-    // this.registrationService.register(this.form.value as Account).then(() => {
-    //   this.navCtrl.navigateForward(['./auth'], { relativeTo: this.route });
-    // });
+    this.registrationService.createAccount(this.form.value as Account).then(() => {
+      this.navCtrl.navigateForward(['../login'], { relativeTo: this.route });
+    });
   }
 }
