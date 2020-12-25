@@ -1,19 +1,19 @@
 <ion-content>
   <ion-text color="primary" class="ion-text-center">
-    <h2>{{ 'register.title' | translate }}</h2>
+    <h2>{{ 'login.title' | translate }}</h2>
   </ion-text>
 
   <form [formGroup]="form" (ngSubmit)="onLogin()" class="ion-padding">
     <ion-item>
-      <ion-label color="primary" position="stacked">E-Mail</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'account.email' | translate }}</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="stacked">Password</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'account.password' | translate }}</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" class="ion-padding" expand="block">Login</ion-button>
+    <ion-button type="submit" class="ion-padding" expand="block">{{ 'login.title' | translate }}</ion-button>
   </form>
 </ion-content>

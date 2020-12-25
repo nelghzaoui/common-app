@@ -1,29 +1,29 @@
 <ion-content>
   <ion-text color="primary" class="ion-text-center">
-    <h2>{{ 'register.title' | translate }}</h2>
+    <h2>{{ 'account.register' | translate }}</h2>
   </ion-text>
 
   <form [formGroup]="form" (ngSubmit)="onRegister()" class="ion-padding">
     <ion-item>
-      <ion-label color="primary" position="stacked">Name</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'registration.name' | translate }}</ion-label>
       <ion-input formControlName="name"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="stacked">E-Mail</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'account.email' | translate }}</ion-label>
       <ion-input formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="stacked">Username</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'account.username' | translate }}</ion-label>
       <ion-input formControlName="username"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" position="stacked">Password</ion-label>
+      <ion-label color="primary" position="stacked">{{ 'account.password' | translate }}</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" class="ion-padding" expand="block">Register</ion-button>
+    <ion-button type="submit" class="ion-padding" expand="block"> {{ 'account.register' | translate }} </ion-button>
   </form>
 </ion-content>
