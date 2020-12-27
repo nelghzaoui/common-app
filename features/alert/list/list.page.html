@@ -1,0 +1,13 @@
+<ion-header>
+  <toolbar-component (clicked)="onAdd()" title="server.list.title"></toolbar-component>
+</ion-header>
+
+<ion-content>
+  <ng-container>
+    <list-component
+      [items]="alerts$ | async"
+      (redirect)="onRedirect($event)"
+      (action)="onAction($event)"
+    ></list-component>
+  </ng-container>
+</ion-content>

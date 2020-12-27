@@ -2,8 +2,6 @@ import { Profile } from '@core/helpers/profile/profile.class';
 import { Subscription } from '@account/models/subscription.class';
 import { UserDevice } from '@core/models/dto/user-device.interface';
 
-s;
-
 export interface ActivateLogin {
   userId: string;
   cellPhone: string;

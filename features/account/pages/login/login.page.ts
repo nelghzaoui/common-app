@@ -27,8 +27,12 @@ export class LoginPage implements OnInit {
   onLogin(): void {
     this.loginService.login().then((response) => {
       if (response) {
-        this.navCtrl.navigateForward(['../alert']);
+        this.navCtrl.navigateForward(['alert']);
       }
     });
+  }
+
+  get title(): string {
+    return `core.forms.title.server-add`;
   }
 }
