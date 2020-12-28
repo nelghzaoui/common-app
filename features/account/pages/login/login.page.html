@@ -20,4 +20,28 @@
 
     <ion-button type="submit" class="ion-padding" expand="block">{{ 'login.title' | translate }}</ion-button>
   </form>
+
+  <ion-row class="ion-padding-top">
+    <ion-col>
+      <p class="ion-text-center">{{ 'home.social-network' | translate }}</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="social-network ion-margin-horizontal">
+    <ion-col size="4">
+      <ion-button color="secondary" shape="round">
+        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button color="dark" shape="round">
+        <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button color="tertiary" shape="round">
+        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
 </ion-content>
