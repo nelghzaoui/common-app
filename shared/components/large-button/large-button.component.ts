@@ -1,15 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'custom-button',
-  templateUrl: './custom-button.component.html',
-  styleUrls: ['./custom-button.component.scss']
+  selector: 'large-button',
+  templateUrl: './large-button.component.html',
+  styleUrls: ['./large-button.component.scss']
 })
-export class CustomButtonComponent {
+export class LargeButtonComponent {
   @Input() label: string;
   @Output() submit = new EventEmitter<MouseEvent>();
-
-  constructor() {}
 
   onClick(): void {
     this.submit.emit();
