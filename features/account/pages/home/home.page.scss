@@ -1,9 +1,4 @@
-#container {
-  display: flex;
-  height: 100%;
-  flex-flow: row wrap;
-  align-content: space-around;
-
+#flex-container {
   ion-img {
     width: 15rem;
     max-width: 30rem;
