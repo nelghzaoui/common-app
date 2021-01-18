@@ -6,32 +6,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-text color="primary" class="ion-text-center">
-    <h2>{{ 'account.register' | translate }}</h2>
-  </ion-text>
+<ion-content class="ion-padding">
+  <div id="flex-container">
+    <ion-text color="primary" class="ion-text-center full-width">
+      <h2>{{ 'account.register' | translate }}</h2>
+    </ion-text>
 
-  <form [formGroup]="form" class="ion-padding">
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'registration.name' | translate }}</ion-label>
-      <ion-input formControlName="name"></ion-input>
-    </ion-item>
+    <form [formGroup]="form" class="full-width">
+      <ion-item>
+        <ion-label color="primary" position="stacked">{{ 'registration.fullname' | translate }}</ion-label>
+        <ion-input formControlName="fullname"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'account.email' | translate }}</ion-label>
-      <ion-input formControlName="email"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">{{ 'account.email' | translate }}</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'account.username' | translate }}</ion-label>
-      <ion-input formControlName="username"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">{{ 'registration.phone' | translate }}</ion-label>
+        <ion-input formControlName="phone" type="number"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'account.password' | translate }}</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label color="primary" position="stacked">{{ 'account.password' | translate }}</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+    </form>
 
-    <large-button label="account.register" (submit)="onClick()"></large-button>
-  </form>
+    <large-button class="full-width" label="account.register" (submit)="onClick()"></large-button>
+  </div>
 </ion-content>

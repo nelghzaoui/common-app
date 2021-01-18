@@ -22,9 +22,9 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit(): void {
     this.form = this.builder.group({
-      name: ['', Validators.required],
+      fullname: ['', Validators.required],
       email: ['', Validators.required],
-      username: ['', Validators.required],
+      phone: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
