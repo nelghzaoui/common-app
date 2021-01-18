@@ -1,9 +1,17 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
   <ion-text color="primary" class="ion-text-center">
     <h2>{{ 'account.register' | translate }}</h2>
   </ion-text>
 
-  <form [formGroup]="form" (ngSubmit)="onRegister()" class="ion-padding">
+  <form [formGroup]="form" class="ion-padding">
     <ion-item>
       <ion-label color="primary" position="stacked">{{ 'registration.name' | translate }}</ion-label>
       <ion-input formControlName="name"></ion-input>
@@ -24,6 +32,6 @@
       <ion-input formControlName="password" type="password"></ion-input>
     </ion-item>
 
-    <ion-button type="submit" class="ion-padding" expand="block"> {{ 'account.register' | translate }} </ion-button>
+    <large-button label="account.register" (submit)="onClick()"></large-button>
   </form>
 </ion-content>

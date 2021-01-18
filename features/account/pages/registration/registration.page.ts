@@ -29,7 +29,7 @@ export class RegistrationPage implements OnInit {
     });
   }
 
-  onRegister(): void {
+  onClick(): void {
     this.registrationService.createAccount(this.form.value as Account).then(() => {
       this.navCtrl.navigateForward(['../login'], { relativeTo: this.route });
     });
