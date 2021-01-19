@@ -1,3 +1,23 @@
 #flex-container {
   align-content: stretch;
+
+  h2 {
+    color: var(--ion-color-primary);
+  }
+
+  h6 {
+    color: var(--ion-color-medium);
+  }
+
+  ion-item {
+    --border-style: solid;
+    --border-color: var(--ion-color-medium);
+    --border-width: 1px;
+    --border-radius: var(--large-radius);
+    padding-top: 1rem;
+  }
+
+  ion-input {
+    height: var(--large-height);
+  }
 }

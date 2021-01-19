@@ -1,4 +1,4 @@
 ion-button {
-  height: 3.5rem;
-  --border-radius: 0.5rem;
+  height: var(--large-height);
+  --border-radius: var(--large-radius);
 }
