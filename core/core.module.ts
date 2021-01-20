@@ -19,6 +19,7 @@ export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
   return new MultiTranslateHttpLoader(http, [
     { prefix: `${prefix}/core/`, suffix: suffix },
     { prefix: `${prefix}/account/`, suffix: suffix },
+    { prefix: `${prefix}/alert/`, suffix: suffix },
     { prefix: `${prefix}/server/`, suffix: suffix },
     { prefix: `${prefix}/shared/`, suffix: suffix }
   ]);
