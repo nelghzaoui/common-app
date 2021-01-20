@@ -1,16 +1,21 @@
-<form [formGroup]="form">
-  <ion-text color="primary" class="ion-text-center">
+<div id="flex-container">
+  <ion-text color="primary" class="ion-text-center full-width">
     <h2>{{ 'core.forms.title.' + labels[0] | translate }}</h2>
   </ion-text>
 
-  <ion-list *ngFor="let input of inputs; let i = index">
-    <ion-item>
-      <ion-label position="stacked">{{ 'core.forms.field.' + input | translate }}</ion-label>
-      <ion-input [formControlName]="input" [type]="input == 'port' ? 'number' : 'text'"></ion-input>
-    </ion-item>
-  </ion-list>
+  <form [formGroup]="form" class="full-width">
+    <ion-list *ngFor="let input of inputs; let i = index">
+      <ion-item>
+        <ion-label position="stacked">{{ 'core.forms.field.' + input | translate }}</ion-label>
+        <ion-input [formControlName]="input" [type]="input == 'port' ? 'number' : 'text'"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 
-  <ion-button (click)="onSend()" type="submit" class="ion-margin" expand="block">
-    {{ 'core.forms.button.' + labels[1] | translate }}
-  </ion-button>
-</form>
+  <large-button
+    [label]="'core.forms.button.' + labels[1] | translate"
+    (click)="onSend()"
+    [isDisable]="!form.valid"
+    class="full-width"
+  ></large-button>
+</div>
