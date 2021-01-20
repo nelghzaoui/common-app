@@ -21,35 +21,32 @@
     </form>
 
     <div class="full-width">
-      <large-button label="account.login" (click)="onLogin()" class="full-width"></large-button>
+      <large-button
+        label="account.login"
+        (click)="onLogin(AuthenticationType.EMAIL)"
+        [isDisable]="!form.valid"
+        class="full-width"
+      ></large-button>
       <p id="flex-inline-center" mode="ios">
         {{ 'login.not-registered' | translate }}
         <ion-button fill="clear" [routerLink]="['../register']">{{ 'account.register' | translate }}</ion-button>
       </p>
     </div>
 
-    <ion-row class="ion-padding-top">
-      <ion-col>
-        <p class="ion-text-center">{{ 'home.social-network' | translate }}</p>
-      </ion-col>
-    </ion-row>
+    <ion-text class="ion-text-center full-width">
+      <p>{{ 'account.social-network' | translate }}</p>
+    </ion-text>
 
-    <ion-row class="social-network ion-margin-horizontal">
-      <ion-col size="4">
-        <ion-button color="secondary" shape="round">
-          <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="4">
-        <ion-button color="dark" shape="round">
-          <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
-        </ion-button>
-      </ion-col>
-      <ion-col size="4">
-        <ion-button color="tertiary" shape="round">
-          <ion-icon slot="icon-only" name="logo-google"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
+    <div class="social-network full-width">
+      <ion-button color="secondary" (click)="onLogin(AuthenticationType.FACEBOOK)">
+        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+      </ion-button>
+      <ion-button color="dark" (click)="onLogin(AuthenticationType.APPLE)">
+        <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
+      </ion-button>
+      <ion-button color="tertiary" (click)="onLogin(AuthenticationType.GOOGLE)">
+        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 </ion-content>

@@ -1,3 +1,4 @@
+import { AuthenticationType } from '@account/models/authentication-type.enum';
 import { AuthenticationService } from '@account/services/authentication/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +10,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
+  AuthenticationType = AuthenticationType;
   form: FormGroup;
 
   constructor(
@@ -24,8 +26,8 @@ export class LoginPage implements OnInit {
     });
   }
 
-  onLogin(): void {
-    this.loginService.login().then((response) => {
+  onLogin(type: AuthenticationType): void {
+    this.loginService.login(type).then((response) => {
       if (response) {
         this.navCtrl.navigateForward(['alert']);
       }
