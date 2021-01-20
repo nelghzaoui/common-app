@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
-import { ListPage } from './pages';
-import { AlertService } from './services/alert/alert.service';
+import * as PAGES from './pages';
+import { AlertService } from './services/alert.service';
 
 export const ROUTES: Routes = [
-  {
-    path: '',
-    component: ListPage
-  }
+  { path: '', component: PAGES.ListPage },
+  { path: 'add', component: PAGES.FormPage },
+  { path: 'edit', component: PAGES.FormPage }
 ];
+
 @NgModule({
-  declarations: [ListPage],
+  declarations: [PAGES.FormPage, PAGES.ListPage],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
   providers: [AlertService]
 })
