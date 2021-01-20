@@ -1,47 +1,55 @@
 <ion-header>
-  <toolbar-component [title]="'login.title' | translate"></toolbar-component>
+  <toolbar-component [title]="'account.login' | translate"></toolbar-component>
 </ion-header>
 
-<ion-content>
-  <ion-text color="primary" class="ion-text-center">
-    <h2>{{ 'login.title' | translate }}</h2>
-  </ion-text>
+<ion-content class="ion-padding">
+  <div id="flex-container">
+    <ion-text color="primary" class="ion-text-center full-width">
+      <h3>{{ 'account.login' | translate }}</h3>
+    </ion-text>
 
-  <form [formGroup]="form" (ngSubmit)="onLogin()" class="ion-padding">
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'account.email' | translate }}</ion-label>
-      <ion-input formControlName="email"></ion-input>
-    </ion-item>
+    <form [formGroup]="form" class="ion-padding full-width">
+      <ion-item>
+        <ion-label position="floating">{{ 'account.email' | translate }}</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label color="primary" position="stacked">{{ 'account.password' | translate }}</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">{{'account.password' | translate}}</ion-label>
+        <ion-input formControlName="password" type="password"></ion-input>
+      </ion-item>
+    </form>
 
-    <ion-button type="submit" class="ion-padding" expand="block">{{ 'login.title' | translate }}</ion-button>
-  </form>
+    <div class="full-width">
+      <large-button label="account.login" (click)="onLogin()" class="full-width"></large-button>
+      <p id="flex-inline-center" mode="ios">
+        {{ 'login.not-registered' | translate }}
+        <ion-button fill="clear" [routerLink]="['../register']">{{ 'account.register' | translate }}</ion-button>
+      </p>
+    </div>
 
-  <ion-row class="ion-padding-top">
-    <ion-col>
-      <p class="ion-text-center">{{ 'home.social-network' | translate }}</p>
-    </ion-col>
-  </ion-row>
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <p class="ion-text-center">{{ 'home.social-network' | translate }}</p>
+      </ion-col>
+    </ion-row>
 
-  <ion-row class="social-network ion-margin-horizontal">
-    <ion-col size="4">
-      <ion-button color="secondary" shape="round">
-        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col size="4">
-      <ion-button color="dark" shape="round">
-        <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
-      </ion-button>
-    </ion-col>
-    <ion-col size="4">
-      <ion-button color="tertiary" shape="round">
-        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
-      </ion-button>
-    </ion-col>
-  </ion-row>
+    <ion-row class="social-network ion-margin-horizontal">
+      <ion-col size="4">
+        <ion-button color="secondary" shape="round">
+          <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button color="dark" shape="round">
+          <ion-icon slot="icon-only" name="logo-apple"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+        <ion-button color="tertiary" shape="round">
+          <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>
