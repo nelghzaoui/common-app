@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class LargeButtonComponent {
   @Input() label: string;
+  @Input() isDisable: boolean;
   @Output() submit = new EventEmitter<MouseEvent>();
 
   onClick(): void {

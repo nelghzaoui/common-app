@@ -20,10 +20,7 @@ export class RegistrationService implements RegistrationServiceFacade {
   createAccount(account: Account): Promise<any> {
     return new Promise((resolve, reject) => {
       this.collection.add(account).then(
-        (r) => {
-          console.log(r);
-          resolve(true);
-        },
+        () => resolve(true),
         (e) => reject(e)
       );
     });
