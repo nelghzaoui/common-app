@@ -1,9 +1,9 @@
 <ion-header>
-  <toolbar-component (clicked)="onAdd()" title="server.list.title"></toolbar-component>
+  <toolbar-component (clicked)="onAdd()" title="alert.list.title"></toolbar-component>
 </ion-header>
 
 <ion-content>
-  <ng-container>
+  <ng-container *ngIf="alerts$ | async">
     <list-component
       [items]="alerts$ | async"
       (redirect)="onRedirect($event)"
