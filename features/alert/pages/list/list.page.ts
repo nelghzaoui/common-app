@@ -47,10 +47,10 @@ export class ListPage implements OnInit {
         this.navCtrl.navigateForward(['./add'], { relativeTo: this.route });
         break;
       case ListAction.READ:
-        this.navCtrl.navigateForward(['alert'], { state: item });
+        this.navCtrl.navigateForward(['alert/detail'], { state: item });
         break;
       case ListAction.UPDATE:
-        this.navCtrl.navigateForward(['./edit'], { state: { server: item }, relativeTo: this.route });
+        this.navCtrl.navigateForward(['./edit'], { state: { alert: item }, relativeTo: this.route });
         break;
       case ListAction.DELETE:
         break;

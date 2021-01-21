@@ -8,7 +8,7 @@ import { AlertType } from '@alert/models/type.enum';
 import { AlertPriority } from '@alert/models/priority.enum';
 
 @Component({
-  selector: 'server-form',
+  selector: 'alert-form',
   templateUrl: './form.page.html',
   styleUrls: ['./form.page.scss']
 })
@@ -39,20 +39,20 @@ export class FormPage implements OnInit {
     });
   }
 
-  async onSubmit(forms): Promise<void> {
-    console.log(forms);
+  async onSubmit(inputs: Alert): Promise<void> {
+    if (this.form.valid) {
+      if (this.alert) {
+        const server = await this.alertService.update('this.server.id', inputs);
+        console.log('update', server);
+      } else {
+        this.alertService.create(inputs);
+      }
 
-    if (this.alert) {
-      const server = await this.alertService.update('this.server.id', forms);
-      console.log('update', server);
-    } else {
-      const server = await this.alertService.create(forms);
+      this.navCtrl.pop();
     }
-
-    this.navCtrl.pop();
   }
 
   get buttonLabel(): string {
-    return this.alert ? 'alert.buttons.update' : 'alert.buttons.add';
+    return this.alert ? 'alert.button.update' : 'alert.button.add';
   }
 }

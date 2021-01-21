@@ -1,5 +1,5 @@
 <ion-header>
-  <toolbar-component [title]="'alert.list.title' | translate"></toolbar-component>
+  <toolbar-component [title]="'alert.title.add' | translate"></toolbar-component>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -12,33 +12,33 @@
 
       <!-- Use Google Maps -->
       <ion-item>
-        <ion-label position="stacked">{{ 'alert.common.field.location' | translate }}</ion-label>
-        <ion-input formControlName="name" clearOnEdit></ion-input>
+        <ion-label position="stacked">{{ 'alert.field.location' | translate }}</ion-label>
+        <ion-input formControlName="location" clearOnEdit></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">{{ 'alert.common.field.type' | translate }}</ion-label>
-        <ion-select interface="action-sheet">
+        <ion-label position="stacked">{{ 'alert.field.type' | translate }}</ion-label>
+        <ion-select interface="action-sheet" formControlName="type">
           <ion-select-option *ngFor="let t of types" [value]="t">{{ t }}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">{{ 'alert.common.field.priority' | translate }}</ion-label>
-        <ion-select interface="action-sheet">
+        <ion-label position="stacked">{{ 'alert.field.priority' | translate }}</ion-label>
+        <ion-select interface="action-sheet" formControlName="priority">
           <ion-select-option *ngFor="let p of priorities" [value]="p">{{ p }}</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-label position="stacked">{{ 'alert.common.field.description' | translate }}</ion-label>
-        <ion-textarea autoGrow="true" clearInput="true" maxlength="200"></ion-textarea>
+        <ion-label position="stacked">{{ 'alert.field.description' | translate }}</ion-label>
+        <ion-textarea formControlName="description" autoGrow="true" clearInput="true" maxlength="200"></ion-textarea>
       </ion-item>
     </form>
 
     <large-button
       [label]="buttonLabel | translate"
-      (click)="onSubmit($event)"
+      (click)="onSubmit(form.value)"
       [isDisable]="!form.valid"
       class="full-width"
     ></large-button>

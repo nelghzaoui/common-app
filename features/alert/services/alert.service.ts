@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Alert } from '@alert/models/alert.class';
+import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetTool, ToastTool } from '@core/tools';
+import { TranslateService } from '@ngx-translate/core';
 
 interface AlertServiceFacade {
-  create(request: Alert): Promise<any>;
+  create(request: Alert): void;
   // updateAlert(request: Alert): Promise<any>;5Q
   // removeAlert(request: Alert): Promise<any>;
 }
@@ -14,18 +17,22 @@ export class AlertService implements AlertServiceFacade {
   private collection: AngularFirestoreCollection<Alert>;
   alerts$: Observable<Alert[]>;
 
-  constructor(readonly store: AngularFirestore) {
+  constructor(
+    readonly store: AngularFirestore,
+    private readonly toastTool: ToastTool,
+    private readonly translate: TranslateService
+  ) {
     this.collection = store.collection<Alert>(AlertService.COLLECTION_NAME);
     this.alerts$ = this.collection.valueChanges();
   }
 
-  create(alert: Alert): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.collection.add(alert).then(
-        () => resolve(true),
-        (e) => reject(e)
-      );
-    });
+  create(alert: Alert): void {
+    console.log(alert);
+
+    this.collection
+      .add(alert)
+      .then(() => this.toastTool.present(this.translate.instant('alert.message.success.added')))
+      .catch(() => this.toastTool.present(this.translate.instant('alert.message.error.generic')));
   }
 
   get(id: string): Observable<any> {

@@ -6,12 +6,13 @@ import { AlertService } from './services/alert.service';
 
 export const ROUTES: Routes = [
   { path: '', component: PAGES.ListPage },
+  { path: 'detail', component: PAGES.DetailPage },
   { path: 'add', component: PAGES.FormPage },
   { path: 'edit', component: PAGES.FormPage }
 ];
 
 @NgModule({
-  declarations: [PAGES.FormPage, PAGES.ListPage],
+  declarations: [PAGES.DetailPage, PAGES.FormPage, PAGES.ListPage],
   imports: [SharedModule, RouterModule.forChild(ROUTES)],
   providers: [AlertService]
 })
