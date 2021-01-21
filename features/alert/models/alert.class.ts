@@ -8,6 +8,7 @@ export class Alert {
     public date: Date,
     public type: AlertType,
     public priority: AlertPriority,
+    public description: string,
     public reporter: string,
     public assignee: string
   ) {}

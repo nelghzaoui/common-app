@@ -1,6 +1,6 @@
 export enum AlertPriority {
-  LOW,
-  MIDDLE,
-  HIGH,
-  URGENT
+  LOW = 'Low',
+  MIDDLE = 'Middle',
+  HIGH = 'High',
+  URGENT = 'Urgent'
 }

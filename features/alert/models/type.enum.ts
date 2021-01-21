@@ -1,5 +1,5 @@
 export enum AlertType {
-  HOUSEBREAKING,
-  FIRE,
-  ASSAULT
+  HOUSEBREAKING = 'House Breaking',
+  FIRE = 'Fire',
+  ASSAULT = 'Assault'
 }

@@ -13,11 +13,11 @@ import { AlertPriority } from '@alert/models/priority.enum';
   styleUrls: ['./form.page.scss']
 })
 export class FormPage implements OnInit {
-  AlertType = AlertType;
   AlertPriority = AlertPriority;
   alert: Alert;
   form: FormGroup;
-  types;
+  priorities = [AlertPriority.LOW, AlertPriority.MIDDLE, AlertPriority.HIGH, AlertPriority.URGENT];
+  types = [AlertType.HOUSEBREAKING, AlertType.FIRE, AlertType.ASSAULT];
 
   constructor(
     private readonly alertService: AlertService,
@@ -26,7 +26,7 @@ export class FormPage implements OnInit {
     private readonly router: Router
   ) {
     const state = this.router.getCurrentNavigation().extras.state;
-    if (state) this.alert = state.server;
+    if (state) this.alert = state.alert;
   }
 
   ngOnInit(): void {
@@ -34,7 +34,8 @@ export class FormPage implements OnInit {
       name: ['', Validators.required],
       location: ['', Validators.required],
       type: ['', Validators.required],
-      priority: ['', Validators.required]
+      priority: ['', Validators.required],
+      description: ['', Validators.required]
     });
   }
 

@@ -9,21 +9,30 @@
         <ion-label position="stacked">{{ 'core.forms.field.name' | translate }}</ion-label>
         <ion-input formControlName="name"></ion-input>
       </ion-item>
+
       <!-- Use Google Maps -->
       <ion-item>
         <ion-label position="stacked">{{ 'alert.common.field.location' | translate }}</ion-label>
-        <ion-input formControlName="name"></ion-input>
+        <ion-input formControlName="name" clearOnEdit></ion-input>
       </ion-item>
+
       <ion-item>
         <ion-label position="stacked">{{ 'alert.common.field.type' | translate }}</ion-label>
-        <ion-select [value]="AlertType">
-          <ion-select-option value="cat">Cat</ion-select-option>
-          <ion-select-option value="dog">Dog</ion-select-option>
+        <ion-select interface="action-sheet">
+          <ion-select-option *ngFor="let t of types" [value]="t">{{ t }}</ion-select-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
-        <ion-label position="stacked">{{ 'core.field.name' | translate }}</ion-label>
-        <ion-input formControlName="name"></ion-input>
+        <ion-label position="stacked">{{ 'alert.common.field.priority' | translate }}</ion-label>
+        <ion-select interface="action-sheet">
+          <ion-select-option *ngFor="let p of priorities" [value]="p">{{ p }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">{{ 'alert.common.field.description' | translate }}</ion-label>
+        <ion-textarea autoGrow="true" clearInput="true" maxlength="200"></ion-textarea>
       </ion-item>
     </form>
 
